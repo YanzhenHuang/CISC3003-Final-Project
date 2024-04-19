@@ -85,7 +85,7 @@ if (mysqli_connect_errno()) {
     die("Connection error: " . mysqli_connect_errno());
 }
 
-// Check for user name duplicates
+// 1.1 Check for user name duplicates
 $haveDupUserName = checkDupUserName($conn, $u_name);
 echo $haveDupUserName == true ? "User name already exists." : "User name is available.";
 
@@ -94,31 +94,30 @@ if ($haveDupUserName == true) {
     die();
 }
 
-// Get latest user ID
-$latestUID = getLatestUID($conn);
+// 1.2 Get latest user ID
+$latestUID = getLatestUID($conn) ? getLatestUID($conn) : 1;
 echo "<br>";
 echo "Latest UID: " . $latestUID;
 
 /* 
-    -------- 2. Initialize sql statement -------- 
+    -------- 2. Insert new User into DB -------- 
 */
-
 $newUID = $latestUID + 1;
 
+// 2.1 Prepare Statement
 $sql = '
     INSERT INTO qa_user (u_id, u_name, u_pwd) VALUES (?, ?, ?);
 ';
 
-// Prepare statement
 $stmt = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($stmt, $sql)) {
     die('Prepared statement error.');
 }
 
-// Bind parameters
+// 2.2 Bind parameters
 mysqli_stmt_bind_param($stmt, 'iss', $newUID, $u_name, $u_pwd);
 
-// execute the query
+// 2.3 execute the query
 mysqli_stmt_execute($stmt);
 
 echo '<br>';
