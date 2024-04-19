@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>Sign In</h1>
+    <h1>Login</h1>
 
     <!-- User Submit Form -->
     <form action="./php/process-login.php" method="post">

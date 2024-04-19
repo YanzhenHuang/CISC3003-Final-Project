@@ -1,4 +1,21 @@
+/* :root {
+    --theme-color: #729ce0;
+} */
+
+html,
+body {
+    background-color: #729ce0;
+}
+
+/* Label-Text Input Pair*/
+.label-and-text-input {
+    display: flex;
+    flex-direction: column;
+}
+
 /* Submit Button */
 .submit-btn {
     background: #729ce0;
+    color: white;
+    border: none;
 }
