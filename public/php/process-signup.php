@@ -125,3 +125,6 @@ mysqli_stmt_execute($stmt);
 
 echo '<br>';
 echo 'Sign Up Successful.';
+
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
