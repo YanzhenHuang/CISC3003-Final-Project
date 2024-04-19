@@ -5,14 +5,18 @@ include ('config-db.php');
 $uid = $_POST['uid'];
 $u_pwd = $_POST['u_pwd'];
 
-// 1. Initialize db connection
+/*
+    --------- 1. Initialize db connection ---------
+*/
 $conn = mysqli_connect(hostname: $host, username: $username, password: $password, database: $dbname);
 
 if (mysqli_connect_errno()) {
     die("Connection error: " . mysqli_connect_errno());
 }
 
-// 2. Initialize sql statement
+/* 
+    -------- 2. Initialize sql statement -------- 
+*/
 $sql = '
     SELECT u_pwd FROM qa_user WHERE u_id = ' . $uid . ';
 ';
@@ -22,8 +26,9 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
     die('wrong');
 }
 
-// 3. Retrieve result from mysql
-
+/*
+    -------- 3. Retrieve result from mysql --------
+*/
 // execute the query.
 mysqli_stmt_execute($stmt);
 
