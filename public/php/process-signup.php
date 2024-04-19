@@ -5,6 +5,11 @@ include ('config-db.php');
 $u_name = $_POST['u_name'];
 $u_pwd = $_POST['u_pwd'];
 
+/**
+ * @param $conn     MySQL Connection
+ * @param $u_name   User Name
+ * @return bool     Whether there is a duplicate user name.
+ */
 function checkDupUserName($conn, $u_name)
 {
     // MySQL query for checking user name.
@@ -18,16 +23,16 @@ function checkDupUserName($conn, $u_name)
         die('Prepared statement error.');
     }
 
-    // Bind parameters
+    // 1. bind parameters
     mysqli_stmt_bind_param($stmt, 's', $u_name);
 
-    // execute the query.
+    // 2. execute the query.
     mysqli_stmt_execute($stmt);
 
-    // bind result to variable $db_u_pwd
+    // 3. bind result to variable $db_u_pwd
     mysqli_stmt_bind_result($stmt, $dup_u_name);
 
-    // Close the statement and connection
+    // 4. execute query
     $haveDupUserName = false;
 
     if (mysqli_stmt_fetch($stmt)) {
