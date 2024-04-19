@@ -20,7 +20,7 @@
 <body>
     <div class="login-signin-panel">
         <h1>Login</h1>
-        <p>Ask whatever you want!</p>
+        <p>Ask whatever to whoever!</p>
 
         <!-- User Submit Form -->
         <form action="./php/process-login.php" method="post">

@@ -19,7 +19,7 @@
 <body>
     <div class="login-signin-panel">
         <h1>Sign Up</h1>
-        <p>Ask whatever you want!</p>
+        <p>Ask whatever to whoever!</p>
 
         <!-- User Submit Form-->
         <form action="./php/process-signup.php" method="post">
