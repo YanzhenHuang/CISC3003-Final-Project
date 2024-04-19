@@ -5,20 +5,16 @@ include ('config-db.php');
 $uid = $_POST['uid'];
 $u_pwd = $_POST['u_pwd'];
 
-/*
-    --------- 1. Initialize db connection ---------
-*/
+// Initialize Connection.
 $conn = initConnection($host, $username, $password, $dbname);
 
-// Hashing password
+// Hashing user input password for validation.
 $u_pwd_hash = hash("sha256", $u_pwd);
 
 
-/* 
-    -------- 2. Initialize sql statement -------- 
-*/
+// Prepare SQL statement
 $sql = '
-    SELECT u_pwd FROM qa_user WHERE u_id = ' . $uid . ';
+    SELECT u_pwd FROM qa_user WHERE u_id = ? ;
 ';
 
 $stmt = mysqli_stmt_init($conn);
@@ -26,9 +22,9 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
     die('wrong');
 }
 
-/*
-    -------- 3. Retrieve result from mysql --------
-*/
+// bind variables
+mysqli_stmt_bind_param($stmt, 'i', $uid);
+
 // execute the query.
 mysqli_stmt_execute($stmt);
 
@@ -36,7 +32,6 @@ mysqli_stmt_execute($stmt);
 mysqli_stmt_bind_result($stmt, $db_u_pwd_hash);
 
 // fetch result
-
 if (mysqli_stmt_fetch($stmt) && $db_u_pwd_hash == $u_pwd_hash) {
     echo "Password: " . $u_pwd . "<br>";
     echo "Login Success!!!";
