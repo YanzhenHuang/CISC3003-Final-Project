@@ -37,7 +37,7 @@
             </div>
 
             <!-- Submit Button -->
-            <input type="submit" value="Login" class="btn"></input>
+            <input type="submit" value="Login" class="btn" id="login"></input>
         </form>
         <!-- To Login Page Button -->
         <button values="Sign Up" class="btn secondary" id="no-acc">No Account? Sign Up!</button>
@@ -45,6 +45,36 @@
 </body>
 
 <script>
+    let userNameField = document.querySelector('#uname');
+    let passwordField = document.querySelector('#u_pwd');
+
+    // Clear error styles of all inputs.
+    function clearAllFieldError() {
+        userNameField.classList.remove('error');
+        passwordField.classList.remove('error');
+    }
+
+    document.querySelector('#login').addEventListener('click', (e) => {
+        var u_name = userNameField.value;
+        var u_pwd = passwordField.value;
+        if (u_name == '') {
+            e.preventDefault();
+            userNameField.classList.add('error');
+        }
+        if (u_pwd == '') {
+            e.preventDefault();
+            passwordField.classList.add('error');
+        }
+    })
+
+    userNameField.addEventListener('focus', (e) => {
+        clearAllFieldError();
+    })
+
+    passwordField.addEventListener('focus', (e) => {
+        clearAllFieldError();
+    })
+
     document.querySelector('#no-acc').addEventListener('click', (e) => {
         e.preventDefault();
         window.location.href = "signup.php";
