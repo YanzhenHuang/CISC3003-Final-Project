@@ -79,11 +79,7 @@ function getLatestUID($conn)
 /*
     --------- 1. Initialize db connection ---------
 */
-$conn = mysqli_connect(hostname: $host, username: $username, password: $password, database: $dbname);
-
-if (mysqli_connect_errno()) {
-    die("Connection error: " . mysqli_connect_errno());
-}
+$conn = initConnection($host, $username, $password, $dbname);
 
 // 1.1 Check for user name duplicates
 $haveDupUserName = checkDupUserName($conn, $u_name);

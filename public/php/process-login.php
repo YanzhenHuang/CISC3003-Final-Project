@@ -8,7 +8,7 @@ $u_pwd = $_POST['u_pwd'];
 /*
     --------- 1. Initialize db connection ---------
 */
-$conn = mysqli_connect(hostname: $host, username: $username, password: $password, database: $dbname);
+$conn = initConnection($host, $username, $password, $dbname);
 
 if (mysqli_connect_errno()) {
     die("Connection error: " . mysqli_connect_errno());
