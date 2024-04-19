@@ -45,6 +45,10 @@ function checkDupUserName($conn, $u_name)
 
 }
 
+/**
+ * @param $conn     MySQL Connection
+ * @return int|null Latest User ID. If no latest, return null.
+ */
 function getLatestUID($conn)
 {
     $sql = '
