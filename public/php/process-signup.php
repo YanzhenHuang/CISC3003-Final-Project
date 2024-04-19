@@ -99,6 +99,9 @@ $latestUID = getLatestUID($conn) ? getLatestUID($conn) : 1;
 echo "<br>";
 echo "Latest UID: " . $latestUID;
 
+// 1.3 Hashing password
+$u_pwd_hash = hash('sha256', $u_pwd);
+
 /* 
     -------- 2. Insert new User into DB -------- 
 */
@@ -115,7 +118,7 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
 }
 
 // 2.2 Bind parameters
-mysqli_stmt_bind_param($stmt, 'iss', $newUID, $u_name, $u_pwd);
+mysqli_stmt_bind_param($stmt, 'iss', $newUID, $u_name, $u_pwd_hash);
 
 // 2.3 execute the query
 mysqli_stmt_execute($stmt);

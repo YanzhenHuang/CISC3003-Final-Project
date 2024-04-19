@@ -14,6 +14,10 @@ if (mysqli_connect_errno()) {
     die("Connection error: " . mysqli_connect_errno());
 }
 
+// Hashing password
+$u_pwd_hash = hash("sha256", $u_pwd);
+
+
 /* 
     -------- 2. Initialize sql statement -------- 
 */
@@ -33,11 +37,11 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
 mysqli_stmt_execute($stmt);
 
 // bind result to variable $db_u_pwd
-mysqli_stmt_bind_result($stmt, $db_u_pwd);
+mysqli_stmt_bind_result($stmt, $db_u_pwd_hash);
 
 // fetch result
 
-if (mysqli_stmt_fetch($stmt) && $db_u_pwd == $u_pwd) {
+if (mysqli_stmt_fetch($stmt) && $db_u_pwd_hash == $u_pwd_hash) {
     echo "Password: " . $u_pwd . "<br>";
     echo "Login Success!!!";
 } else {
