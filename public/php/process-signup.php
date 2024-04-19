@@ -112,4 +112,5 @@ mysqli_stmt_bind_param($stmt, 'iss', $newUID, $u_name, $u_pwd);
 // execute the query
 mysqli_stmt_execute($stmt);
 
+echo '<br>';
 echo 'Sign Up Successful.';
