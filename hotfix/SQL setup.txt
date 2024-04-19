@@ -1,0 +1,28 @@
+CREATE TABLE qa_user (
+	u_id int PRIMARY KEY,
+    u_name varchar(32),
+    u_pwd varchar(128)
+);
+
+CREATE TABLE post (
+	p_id int PRIMARY KEY,
+    u_id int,
+    p_content varchar(256),
+    FOREIGN KEY (u_id) REFERENCES qa_user (u_id)
+);
+
+CREATE TABLE reply(
+	r_id int PRIMARY KEY,
+    p_id int,
+    u_id int,
+    r_content varchar(256),
+    FOREIGN KEY (p_id) REFERENCES post (p_id),
+    FOREIGN KEY (u_id) REFERENCES qa_user (u_id)
+);
+
+INSERT INTO qa_user (u_id, u_name, u_pwd) VALUES 
+	(1, "Guo Pengze", "111"),
+    (2, "Chen Zirui", "222"),
+    (3, "Yang Zhihan", "333"),
+    (4, "Li Ruoxuan", "444"),
+    (5, "Huang Yanzhen", "555");
