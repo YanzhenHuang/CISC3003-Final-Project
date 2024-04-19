@@ -18,7 +18,8 @@
 </head>
 
 <body>
-    <div class="login-signin-panel">
+    <img src="./images/Logo.png" class="login-signup-logo">
+    <div class="login-signup-panel">
         <h1>Login</h1>
         <p>Ask whatever to whoever!</p>
 
