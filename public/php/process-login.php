@@ -36,7 +36,10 @@ if (mysqli_stmt_fetch($stmt) && $db_u_pwd_hash == $u_pwd_hash) {
     echo "Password: " . $u_pwd . "<br>";
     echo "Login Success!!!";
 } else {
-    echo "Login Failed";
+    echo "Login Failed <br>";
+    echo "Password Inputted: " . $u_pwd . "<br>";
+    echo "Password Hash: " . $u_pwd_hash . "<br>";
+    echo "Password Hash from DB: " . $db_u_pwd_hash . "<br>";
 }
 
 mysqli_stmt_close($stmt);
