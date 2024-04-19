@@ -10,26 +10,36 @@
 </head>
 
 <body>
-    <h1>Login</h1>
+    <div class="login-signin-panel">
+        <h1>Login</h1>
+        <p>Ask whatever you want!</p>
 
-    <!-- User Submit Form -->
-    <form action="./php/process-login.php" method="post">
+        <!-- User Submit Form -->
+        <form action="./php/process-login.php" method="post">
 
-        <!-- User ID -->
-        <div class="label-and-text-input">
-            <lable for="uid">User ID:</lable>
-            <input type="text" id="uid" name="uid">
-        </div>
+            <!-- User ID -->
+            <div class="label-and-text-input">
+                <input type="text" id="uid" name="uid" placeholder="User ID">
+            </div>
 
-        <!-- Password -->
-        <div class="label-and-text-input">
-            <label for="u_pwd">User Password: </label>
-            <input type="text" id="u_pwd" name="u_pwd">
-        </div>
+            <!-- Password -->
+            <div class="label-and-text-input">
+                <input type="password" id="u_pwd" name="u_pwd" placeholder="Password">
+            </div>
 
-        <!-- Submit Button -->
-        <input type="submit" value="Login" class="submit-btn"></input>
-    </form>
+            <!-- Submit Button -->
+            <input type="submit" value="Login" class="btn"></input>
+        </form>
+        <!-- To Login Page Button -->
+        <button values="Sign Up" class="btn secondary" id="no-acc">No Account? Sign Up!</button>
+    </div>
 </body>
+
+<script>
+    document.querySelector('#no-acc').addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = "signup.php";
+    });
+</script>
 
 </html>
