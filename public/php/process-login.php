@@ -10,10 +10,6 @@ $u_pwd = $_POST['u_pwd'];
 */
 $conn = initConnection($host, $username, $password, $dbname);
 
-if (mysqli_connect_errno()) {
-    die("Connection error: " . mysqli_connect_errno());
-}
-
 // Hashing password
 $u_pwd_hash = hash("sha256", $u_pwd);
 
