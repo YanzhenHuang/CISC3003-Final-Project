@@ -6,6 +6,10 @@
     --heavy-gray-transparent: rgba(35, 35, 35, 0.087);
 }
 
+* {
+    font-family: "Poppins", sans-serif;
+}
+
 html,
 body {
     background-color: var(--theme-color);
