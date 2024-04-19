@@ -27,7 +27,7 @@
 
             <!-- User ID -->
             <div class="label-and-text-input">
-                <input type="text" id="uid" name="uid" placeholder="User ID">
+                <input type="text" id="uname" name="u_name" placeholder="User Name">
             </div>
 
             <!-- Password -->

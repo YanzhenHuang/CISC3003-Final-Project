@@ -2,7 +2,7 @@
 include ('config-db.php');
 
 // Get user ID and password
-$uid = $_POST['uid'];
+$u_name = $_POST['u_name'];
 $u_pwd = $_POST['u_pwd'];
 
 // Initialize Connection.
@@ -14,7 +14,7 @@ $u_pwd_hash = hash("sha256", $u_pwd);
 
 // Prepare SQL statement
 $sql = '
-    SELECT u_pwd FROM qa_user WHERE u_id = ? ;
+    SELECT u_pwd FROM qa_user WHERE u_name = ?;
 ';
 
 $stmt = mysqli_stmt_init($conn);
@@ -23,7 +23,7 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
 }
 
 // bind variables
-mysqli_stmt_bind_param($stmt, 'i', $uid);
+mysqli_stmt_bind_param($stmt, 's', $u_name);
 
 // execute the query.
 mysqli_stmt_execute($stmt);
