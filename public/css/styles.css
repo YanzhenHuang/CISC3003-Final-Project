@@ -46,6 +46,10 @@ body {
     cursor: pointer;
 }
 
+.login-signup-panel:active {
+    transform: scale(0.999);
+}
+
 .login-signup-panel h1 {
     margin-top: 0;
     margin-bottom: 0.4rem;
@@ -107,6 +111,10 @@ body {
     cursor: pointer;
     transform: scale(1.02);
     box-shadow: var(--theme-color-transparent) 0px 8px 15px;
+}
+
+.btn:active {
+    transform: scale(0.99);
 }
 
 .btn.secondary:hover {
