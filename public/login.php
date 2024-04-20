@@ -18,33 +18,61 @@
 </head>
 
 <body>
-    <img src="./images/Logo.png" class="login-signup-logo">
-    <div class="login-signup-panel">
-        <h1>Login</h1>
-        <p>Ask whatever to whoever!</p>
 
-        <!-- User Submit Form -->
-        <form action="./php/process-login.php" method="post">
+    <!-- Intro Animation Overlay -->
+    <div class="overlay" id="overlay">
+        <h1 class="intro-text" onclick="enterSite()">Campus Q&A</h1>
+    </div>
 
-            <!-- User ID -->
-            <div class="label-and-text-input">
-                <input type="text" id="uname" name="u_name" placeholder="User Name">
-            </div>
+    <!-- Hidden before animation -->
+    <div class="hidden-at-start">
 
-            <!-- Password -->
-            <div class="label-and-text-input">
-                <input type="password" id="u_pwd" name="u_pwd" placeholder="Password">
-            </div>
+        <!-- Logo with Background -->
+        <div class="logo-container">
+            <img src="./images/Logo.png" class="login-signup-logo">
+        </div>
 
-            <!-- Submit Button -->
-            <input type="submit" value="Login" class="btn" id="login"></input>
-        </form>
-        <!-- To Login Page Button -->
-        <button values="Sign Up" class="btn secondary" id="no-acc">No Account? Sign Up!</button>
+
+        <div class="login-signup-panel">
+            <h1>Login</h1>
+            <p>Ask whatever to whoever!</p>
+
+            <!-- User Submit Form -->
+            <form action="./php/process-login.php" method="post">
+
+                <!-- User ID -->
+                <div class="label-and-text-input">
+                    <input type="text" id="uname" name="u_name" placeholder="User Name">
+                </div>
+
+                <!-- Password -->
+                <div class="label-and-text-input">
+                    <input type="password" id="u_pwd" name="u_pwd" placeholder="Password">
+                </div>
+
+                <!-- Submit Button -->
+                <input type="submit" value="Login" class="btn" id="login"></input>
+            </form>
+            <!-- To Login Page Button -->
+            <button values="Sign Up" class="btn secondary" id="no-acc">No Account? Sign Up!</button>
+        </div>
     </div>
 </body>
-
 <script>
+    function enterSite() {
+        var overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+
+
+        var hiddenElements = document.querySelectorAll('.hidden-at-start');
+        hiddenElements.forEach(function (element) {
+            element.classList.add('visible');
+        });
+    }
+
+</script>
+<script>
+
     let userNameField = document.querySelector('#uname');
     let passwordField = document.querySelector('#u_pwd');
 
