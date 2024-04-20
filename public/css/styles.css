@@ -11,16 +11,9 @@
     font-family: "Poppins", sans-serif;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    /*background-color: linear-gradient(to right, #ff0000, #ffffff 50%, #0000ff); */
-    background-image: linear-gradient(to right, #ff0000a8, #ffffffa8 50%, #0000ffa8), url('../images/2.png');
-    background-size: cover;
+html,
+body {
     font-family: "Poppins", sans-serif;
-    position: relative;
-    overflow: hidden;
 }
 
 img {
@@ -41,15 +34,15 @@ img {
     top: 3rem;
 
     display: flex;
-    justify-content: center;  
-    align-items: center;      
-    width: 12.5rem;  
-    height: 5rem; 
+    justify-content: center;
+    align-items: center;
+    width: 12.5rem;
+    height: 5rem;
 
     padding-top: 0.313rem;
-    
+
     background-color: var(--theme-color);
-    border-radius: 100% / 100%;  
+    border-radius: 100% / 100%;
     margin: auto;
 
 }
@@ -173,7 +166,7 @@ img {
     color: white;
     opacity: 0;
     cursor: pointer;
-    animation: fadeInText 2s 0.5s forwards; 
+    animation: fadeInText 2s 0.5s forwards;
 }
 
 /* Open-Animation */
@@ -181,14 +174,20 @@ img {
     0% {
         background: linear-gradient(to right, rgba(0, 0, 255, 0), rgba(255, 0, 0, 0));
     }
+
     100% {
         background: linear-gradient(to right, rgba(0, 0, 255, 0.7), rgba(255, 0, 0, 0.7));
     }
 }
 
 @keyframes fadeInText {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .hidden-at-start {
@@ -199,4 +198,3 @@ img {
 .visible {
     opacity: 1;
 }
-

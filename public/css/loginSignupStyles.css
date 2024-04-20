@@ -1,0 +1,13 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    /* Background Gradient */
+    background-image: linear-gradient(to bottom right, #ff0000a8, #ffffffa8 50%, #0000ffa8), url('../images/2.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
