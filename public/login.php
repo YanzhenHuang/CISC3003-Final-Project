@@ -36,7 +36,7 @@
         </div>
 
 
-        <div class="login-signup-panel">
+        <div class="login-signup-panel content-block">
             <h1>Login</h1>
             <p>Ask whatever to whoever!</p>
 

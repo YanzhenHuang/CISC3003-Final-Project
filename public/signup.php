@@ -25,7 +25,7 @@
         <img src="./images/Logo.png" class="login-signup-logo">
     </div>
 
-    <div class="login-signup-panel">
+    <div class="login-signup-panel content-block">
         <h1>Sign Up</h1>
         <p>Ask whatever to whoever!</p>
 

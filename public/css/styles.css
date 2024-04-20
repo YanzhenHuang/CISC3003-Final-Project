@@ -58,14 +58,15 @@ img {
     margin: 0 auto;
     max-width: 20rem;
     border-radius: 0.4rem;
+}
 
+.content-block {
     box-shadow: rgba(51, 68, 85, 0.416) 0px 8px 24px;
-
     background-color: white;
     transition: transform 0.2s ease-in-out;
 }
 
-.login-signup-panel:hover {
+.content-block:hover {
     transform: scale(1.01);
     cursor: pointer;
 }
