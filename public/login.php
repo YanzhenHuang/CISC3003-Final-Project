@@ -45,12 +45,12 @@
 
                 <!-- User ID -->
                 <div class="label-and-text-input">
-                    <input type="text" id="uname" name="u_name" placeholder="User Name">
+                    <input type="text" class="non-empty" id="uname" name="u_name" placeholder="User Name">
                 </div>
 
                 <!-- Password -->
                 <div class="label-and-text-input">
-                    <input type="password" id="u_pwd" name="u_pwd" placeholder="Password">
+                    <input type="password" class="non-empty" id="u_pwd" name="u_pwd" placeholder="Password">
                 </div>
 
                 <!-- Submit Button -->
@@ -73,37 +73,36 @@
         });
     }
 </script>
+
 <script>
-    let userNameField = document.querySelector('#uname');
-    let passwordField = document.querySelector('#u_pwd');
+    let nonEmptyFields = document.querySelectorAll(".non-empty");
 
     // Clear error styles of all inputs.
     function clearAllFieldError() {
-        userNameField.classList.remove('error');
-        passwordField.classList.remove('error');
+        nonEmptyFields.forEach((field) => {
+            field.classList.remove('error');
+        });
     }
 
+    // Register event: User click submit, check if there is any empty fields.
     document.querySelector('#login').addEventListener('click', (e) => {
-        var u_name = userNameField.value;
-        var u_pwd = passwordField.value;
-        if (u_name == '') {
-            e.preventDefault();
-            userNameField.classList.add('error');
-        }
-        if (u_pwd == '') {
-            e.preventDefault();
-            passwordField.classList.add('error');
-        }
+        nonEmptyFields.forEach((field) => {
+            let curFieldVal = field.value;
+            if (curFieldVal == '') {
+                e.preventDefault();
+                field.classList.add('error');
+            }
+        })
     })
 
-    userNameField.addEventListener('focus', (e) => {
-        clearAllFieldError();
-    })
+    // Register clear all error events.
+    nonEmptyFields.forEach((field) => {
+        field.addEventListener('focus', (e) => {
+            clearAllFieldError();
+        })
+    });
 
-    passwordField.addEventListener('focus', (e) => {
-        clearAllFieldError();
-    })
-
+    // Switch to Sign up page.
     document.querySelector('#no-acc').addEventListener('click', (e) => {
         e.preventDefault();
         window.location.href = "signup.php";

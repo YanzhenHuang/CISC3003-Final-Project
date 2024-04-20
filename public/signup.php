@@ -33,21 +33,21 @@
         <form action="./php/process-signup.php" method="post">
             <!-- User Name -->
             <div class="label-and-text-input">
-                <input type="text" id="u_name" name="u_name" placeholder="User Name">
+                <input type="text" class="non-empty" id="u_name" name="u_name" placeholder="User Name">
             </div>
 
             <!-- Password -->
             <div class="label-and-text-input">
-                <input type="text" id="u_pwd" name="u_pwd" placeholder="Password">
+                <input type="text" class="non-empty" id="u_pwd" name="u_pwd" placeholder="Password">
             </div>
 
             <!-- Confirm Password -->
             <div class="label-and-text-input">
-                <input type="text" id="u_confirm_pwd" placeholder="Confirm Password">
+                <input type="text" class="non-empty" id="u_confirm_pwd" placeholder="Confirm Password">
             </div>
 
             <!-- Submit Button -->
-            <input type="submit" value="Sign Up" class="btn"></input>
+            <input type="submit" value="Sign Up" class="btn" id="signup"></input>
 
         </form>
         <!-- To Login Page Button -->
@@ -56,6 +56,41 @@
 
 </body>
 <script>
+    document.querySelector('#have-acc').addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = "login.php";
+    });
+</script>
+
+<script>
+    let nonEmptyFields = document.querySelectorAll(".non-empty");
+
+    // Clear error styles of all inputs.
+    function clearAllFieldError() {
+        nonEmptyFields.forEach((field) => {
+            field.classList.remove('error');
+        });
+    }
+
+    // Register event: User click submit, check if there is any empty fields.
+    document.querySelector('#signup').addEventListener('click', (e) => {
+        nonEmptyFields.forEach((field) => {
+            let curFieldVal = field.value;
+            if (curFieldVal == '') {
+                e.preventDefault();
+                field.classList.add('error');
+            }
+        })
+    })
+
+    // Register clear all error events.
+    nonEmptyFields.forEach((field) => {
+        field.addEventListener('focus', (e) => {
+            clearAllFieldError();
+        })
+    });
+
+    // Switch to Sign up page.
     document.querySelector('#have-acc').addEventListener('click', (e) => {
         e.preventDefault();
         window.location.href = "login.php";
