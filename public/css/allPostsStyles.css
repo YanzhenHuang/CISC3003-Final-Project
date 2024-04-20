@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+}
+
+header {
+    background: var(--theme-color);
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+}
+
+/* Grid layouts of question cards.*/
+.question-grid {
+    margin: 2rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+}
+
+/* Question Card styles*/
+.question-card {
+    display: block;
+    margin: 0 auto;
+    padding: 0.1rem 0.4rem 0.2rem 0.4rem;
+    width: 100%;
+    max-width: 22rem;
+    border-radius: 0.3rem;
+}
+
+.question-card .card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.question-card .card-title .user-name {
+    font-weight: 600;
+}
+
+.question-card .card-title .create-time {
+    font-size: 0.7rem;
+    opacity: 0.5;
+}
+
+.question-card p {
+    margin: 0;
+}
