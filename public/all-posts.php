@@ -5,8 +5,6 @@
     <title>All Posts</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
-
     <!-- Styles -->
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/allPostsStyles.css">
@@ -46,7 +44,7 @@
         mysqli_stmt_bind_result($stmt_all_posts, $p_id, $u_name, $p_content, $p_is_closed, $p_create_time);
 
         while (mysqli_stmt_fetch($stmt_all_posts)) {
-            echo '<div class="question-card content-block">';
+            echo '<div class="question-card content-block" id="p_id-' . $p_id . '">';
             echo '<div class="card-title"><p class="user-name">' . $u_name . '</p> <p class="create-time">' . $p_create_time . '</p></div>';
             echo '<p>' . $p_content . '</p>';
             echo '</div>';
