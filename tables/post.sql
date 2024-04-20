@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 03:46 PM
+-- Generation Time: Apr 20, 2024 at 01:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,7 +45,25 @@ INSERT INTO `post` (`p_id`, `u_id`, `p_content`, `p_is_close`, `p_create_time`) 
 (3, 3, 'Aminos', 0, '2024-04-19 11:48:38'),
 (4, 2, '123', 0, '2024-04-19 11:48:38'),
 (5, 2, 'Test', 0, '2024-04-19 11:48:38'),
-(6, 1, 'This is a test of database.', 0, '2024-04-19 11:50:06');
+(6, 1, 'This is a test of database.', 0, '2024-04-19 11:50:06'),
+(7, 1, 'test', 0, '2024-04-19 16:43:54'),
+(8, 1, 'test', 0, '2024-04-19 16:43:58'),
+(9, 1, 'test 123123', 0, '2024-04-19 16:44:02'),
+(10, 1, 'Hahahahaha', 0, '2024-04-19 16:44:07'),
+(11, 2, 'My name is Guo Pengze.', 0, '2024-04-19 16:45:22'),
+(12, 3, 'My name is Guo Pengze 2.', 0, '2024-04-19 16:45:30'),
+(13, 3, 'My name is Guo Pengze 3.', 0, '2024-04-19 16:45:33'),
+(14, 3, 'My name is Guo Pengze 4.', 0, '2024-04-19 16:45:38'),
+(15, 3, 'My name is Guo Pengze 5.', 0, '2024-04-19 16:45:43'),
+(16, 4, 'This is my first question!', 0, '2024-04-19 16:49:09'),
+(17, 4, 'Whoa!', 0, '2024-04-19 17:04:01'),
+(18, 1, 'Admin test if remove manual increment of post id works.', 0, '2024-04-19 17:33:08'),
+(19, 1, 'Test merge.', 0, '2024-04-19 17:35:14'),
+(20, 1, 'This is a test post from admin on 17:18 of April 20, 2024.', 0, '2024-04-20 09:18:37'),
+(21, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in', 0, '2024-04-20 10:14:47'),
+(22, 5, 'lorem ipsum layout test', 0, '2024-04-20 10:16:00'),
+(23, 6, 'I am huang yanzhen', 0, '2024-04-20 10:17:42'),
+(24, 6, 'I am huang yanzhen. I am a fashionboy.', 0, '2024-04-20 10:38:28');
 
 --
 -- Indexes for dumped tables
@@ -57,6 +75,16 @@ INSERT INTO `post` (`p_id`, `u_id`, `p_content`, `p_is_close`, `p_create_time`) 
 ALTER TABLE `post`
   ADD PRIMARY KEY (`p_id`),
   ADD KEY `User Post` (`u_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
