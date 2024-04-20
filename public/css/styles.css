@@ -18,6 +18,12 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+header {
+    background: var(--theme-color);
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+}
+
 img {
     -webkit-user-drag: none;
 }

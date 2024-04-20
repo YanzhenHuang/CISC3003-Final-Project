@@ -2,12 +2,6 @@ body {
     margin: 0;
 }
 
-header {
-    background: var(--theme-color);
-    padding-top: 0.9rem;
-    padding-bottom: 0.9rem;
-}
-
 /* Grid layouts of question cards.*/
 .question-grid {
     margin: 2rem;
