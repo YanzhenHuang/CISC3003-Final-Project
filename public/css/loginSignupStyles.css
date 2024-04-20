@@ -10,4 +10,8 @@ body {
     background-position: center;
     position: relative;
     overflow: hidden;
+
+    /* Prevent user to select in login/signup pages.*/
+    user-select: none;
+    -webkit-user-select: none;
 }
