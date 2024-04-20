@@ -24,6 +24,11 @@ header {
     padding-bottom: 0.9rem;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 img {
     -webkit-user-drag: none;
 }
