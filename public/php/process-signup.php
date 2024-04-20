@@ -63,23 +63,23 @@ if ($haveDupUserName == true) {
 $u_pwd_hash = hash('sha256', $u_pwd);
 
 // 2.1 Prepare Statement
-$sql = '
+$sql_signup = '
     INSERT INTO qa_user (u_name, u_pwd) VALUES (?, ?);
 ';
 
-$stmt = mysqli_stmt_init($conn);
-if (!mysqli_stmt_prepare($stmt, $sql)) {
+$stmt_signup = mysqli_stmt_init($conn);
+if (!mysqli_stmt_prepare($stmt_signup, $sql_signup)) {
     die('Prepared statement error.');
 }
 
 // 2.2 Bind parameters
-mysqli_stmt_bind_param($stmt, 'ss', $u_name, $u_pwd_hash);
+mysqli_stmt_bind_param($stmt_signup, 'ss', $u_name, $u_pwd_hash);
 
 // 2.3 execute the query
-mysqli_stmt_execute($stmt);
+mysqli_stmt_execute($stmt_signup);
 
 echo '<br>';
 echo 'Sign Up Successful.';
 
-mysqli_stmt_close($stmt);
+mysqli_stmt_close($stmt_signup);
 mysqli_close($conn);

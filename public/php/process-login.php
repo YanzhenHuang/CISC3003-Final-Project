@@ -13,26 +13,26 @@ $u_pwd_hash = hash("sha256", $u_pwd);
 
 
 // Prepare SQL statement
-$sql = '
+$sql_login = '
     SELECT u_pwd FROM qa_user WHERE u_name = ?;
 ';
 
-$stmt = mysqli_stmt_init($conn);
-if (!mysqli_stmt_prepare($stmt, $sql)) {
+$stmt_login = mysqli_stmt_init($conn);
+if (!mysqli_stmt_prepare($stmt_login, $sql_login)) {
     die('wrong');
 }
 
 // bind variables
-mysqli_stmt_bind_param($stmt, 's', $u_name);
+mysqli_stmt_bind_param($stmt_login, 's', $u_name);
 
 // execute the query.
-mysqli_stmt_execute($stmt);
+mysqli_stmt_execute($stmt_login);
 
 // bind result to variable $db_u_pwd
-mysqli_stmt_bind_result($stmt, $db_u_pwd_hash);
+mysqli_stmt_bind_result($stmt_login, $db_u_pwd_hash);
 
 // fetch result
-if (mysqli_stmt_fetch($stmt) && $db_u_pwd_hash == $u_pwd_hash) {
+if (mysqli_stmt_fetch($stmt_login) && $db_u_pwd_hash == $u_pwd_hash) {
     echo "Password: " . $u_pwd . "<br>";
     echo "Login Success!!!";
 } else {
@@ -42,5 +42,5 @@ if (mysqli_stmt_fetch($stmt) && $db_u_pwd_hash == $u_pwd_hash) {
     echo "Password Hash from DB: " . $db_u_pwd_hash . "<br>";
 }
 
-mysqli_stmt_close($stmt);
+mysqli_stmt_close($stmt_login);
 mysqli_close($conn);
