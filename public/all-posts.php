@@ -46,7 +46,7 @@
         while (mysqli_stmt_fetch($stmt_all_posts)) {
             echo '<div class="question-card content-block" id="p_id-' . $p_id . '">';
             echo '<div class="card-title"><p class="user-name">' . $u_name . '</p> <p class="create-time">' . $p_create_time . '</p></div>';
-            echo '<p>' . $p_content . '</p>';
+            echo '<p class="content">' . $p_content . '</p>';
             echo '</div>';
             // echo $p_id . '  ' . $u_name . '  ' . $p_content . '  ' . $p_create_time . '<br>';
         } ?>

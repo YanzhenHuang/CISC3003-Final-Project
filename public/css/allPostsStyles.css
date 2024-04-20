@@ -17,6 +17,7 @@ body {
     padding: 0.1rem 0.4rem 0.2rem 0.4rem;
     width: 100%;
     max-width: 22rem;
+    height: 10rem;
     border-radius: 0.3rem;
 }
 
@@ -38,4 +39,14 @@ body {
 
 .question-card p {
     margin: 0;
+    /* height: 100%; */
+}
+
+.question-card .content {
+    display: block;
+    height: calc(80%);
+    width: calc(98%);
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
 }
