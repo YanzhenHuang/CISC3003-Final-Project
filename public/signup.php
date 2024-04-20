@@ -6,7 +6,10 @@
     <title>Sign Up</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/loginSignupStyles.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +24,7 @@
     <div class="logo-container">
         <img src="./images/Logo.png" class="login-signup-logo">
     </div>
-    
+
     <div class="login-signup-panel">
         <h1>Sign Up</h1>
         <p>Ask whatever to whoever!</p>
