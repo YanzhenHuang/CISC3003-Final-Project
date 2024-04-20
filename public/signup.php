@@ -17,7 +17,11 @@
 </head>
 
 <body>
-    <img src="./images/Logo.png" class="login-signup-logo">
+    <!-- Logo with Background -->
+    <div class="logo-container">
+        <img src="./images/Logo.png" class="login-signup-logo">
+    </div>
+    
     <div class="login-signup-panel">
         <h1>Sign Up</h1>
         <p>Ask whatever to whoever!</p>
