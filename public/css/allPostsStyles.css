@@ -9,6 +9,10 @@
     --light-red: rgb(214, 89, 89);
 }
 
+header a {
+    color: white;
+}
+
 /* Form for asking questions*/
 .ask-question-form {
     margin: 0 auto;

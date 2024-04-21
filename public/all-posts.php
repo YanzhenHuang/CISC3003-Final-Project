@@ -23,6 +23,7 @@
 <body>
     <header>
         <img src="./images/Logo.png" class="login-signup-logo">
+        <a href="login.php">Log Out</a>
     </header>
 
     <!-- Current User -->

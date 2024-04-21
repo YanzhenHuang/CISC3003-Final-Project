@@ -20,8 +20,11 @@ body {
 
 header {
     background: var(--theme-color);
-    padding-top: 0.9rem;
-    padding-bottom: 0.9rem;
+    display: flex;
+    padding: 1rem 1rem 0.9rem 1rem;
+    /* padding-bottom: 0.9rem; */
+    justify-content: space-between;
+    align-items: center;
 }
 
 a {
@@ -37,7 +40,7 @@ img {
 /* Login/Singin Top Logo*/
 .login-signup-logo {
     display: block;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: 10rem;
     z-index: 100;
 }
