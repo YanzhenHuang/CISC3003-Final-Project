@@ -25,6 +25,28 @@
         <?php
         include ('./php/config-db.php');
 
+        function getDisplayTimeString($dateTimeStr)
+        {
+            // dateTimeStr format: 2024-04-20 00:49:09
+            $postDateTime = new DateTime($dateTimeStr);
+            $curDateTime = new DateTime();
+
+            $interval = $curDateTime->diff($postDateTime);
+
+            $displayTimeString = "";
+            if ($interval->y > 0) {
+                $displayTimeString = $interval->y . ' y ago';
+            } else if ($interval->m > 0) {
+                $displayTimeString = $interval->m . ' mo ago';
+            } else if ($interval->d > 0) {
+                $displayTimeString = $interval->d . ' d ago';
+            } else {
+                $displayTimeString = $postDateTime->format('H:i');
+            }
+
+            return $displayTimeString;
+        }
+
         // Initialize db connection
         $conn = initConnection($host, $username, $password, $dbname);
 
@@ -44,8 +66,11 @@
         mysqli_stmt_bind_result($stmt_all_posts, $p_id, $u_name, $p_content, $p_is_closed, $p_create_time);
 
         while (mysqli_stmt_fetch($stmt_all_posts)) {
+            // Format display time
+            $p_create_time = getDisplayTimeString($p_create_time);
+
             echo '<a href="./post-details.php?post_id=' . $p_id . '">';
-            
+
             echo '<div class="question-card content-block" id="p_id-' . $p_id . '">';
             echo '<div class="card-title"><p class="user-name">' . $u_name . '</p> <p class="create-time">' . $p_create_time . '</p></div>';
             echo '<p class="content">' . $p_content . '</p>';
