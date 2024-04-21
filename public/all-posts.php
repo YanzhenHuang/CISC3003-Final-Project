@@ -41,6 +41,24 @@
     echo 'User ID: ' . $login_uid;
     ?>
 
+    <!-- User Submit Form -->
+    <form action="./php/process-post.php" method="post">
+
+        <!-- Hidden User ID Field -->
+        <?php
+        echo '<input type="hidden" id="uid" name="uid" value="' . $login_uid . '"></input>'
+            ?>
+
+        <!-- Question Content -->
+        <div class="label-and-text-input">
+            <label for="p_content">Content:</label>
+            <textarea type="text" id="p_content" name="p_content"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Login" class="submit-btn"></input>
+    </form>
+
     <!-- Question GridView -->
     <div class="question-grid">
         <?php
@@ -102,6 +120,7 @@
         } ?>
 
     </div>
+
 </body>
 
 </html>

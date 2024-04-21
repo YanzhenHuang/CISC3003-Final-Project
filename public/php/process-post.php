@@ -28,5 +28,7 @@ mysqli_stmt_execute($stmt);
 echo '<br>';
 echo 'Question posted.';
 
+header("Location: ../all-posts.php");
+
 mysqli_stmt_close($stmt);
 mysqli_close($conn);
