@@ -98,7 +98,8 @@ img {
     margin-bottom: 1rem;
 }
 
-.label-and-text-input input {
+.label-and-text-input input,
+.label-and-text-input textarea {
     padding: 0.5rem;
     min-height: 1.8rem;
     max-width: 50rem;
@@ -108,7 +109,8 @@ img {
     border-width: 0.12rem;
 }
 
-.label-and-text-input input.error {
+.label-and-text-input input.error,
+.label-and-text-input textarea.error {
     border-color: var(--light-red);
 }
 
@@ -116,7 +118,8 @@ img {
     background-color: rgb(232, 232, 232);
 }
 
-.label-and-text-input input:focus {
+.label-and-text-input input:focus,
+.label-and-text-input textarea:focus {
     outline: none;
     border-color: var(--theme-color);
 }

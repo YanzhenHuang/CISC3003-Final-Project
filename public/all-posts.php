@@ -42,22 +42,25 @@
     ?>
 
     <!-- User Submit Form -->
-    <form action="./php/process-post.php" method="post">
+    <div class="ask-question-form content-block">
+        <h1>Ask whatever to whoever!</h1>
+        <form action="./php/process-post.php" method="post">
 
-        <!-- Hidden User ID Field -->
-        <?php
-        echo '<input type="hidden" id="uid" name="uid" value="' . $login_uid . '"></input>'
-            ?>
+            <!-- Hidden User ID Field -->
+            <?php
+            echo '<input type="hidden" id="uid" name="uid" value="' . $login_uid . '"></input>'
+                ?>
 
-        <!-- Question Content -->
-        <div class="label-and-text-input">
-            <label for="p_content">Content:</label>
-            <textarea type="text" id="p_content" name="p_content"></textarea>
-        </div>
+            <!-- Question Content -->
+            <div class="label-and-text-input">
+                <label for="p_content">Type in what you want to ask:</label>
+                <textarea type="text" id="p_content" name="p_content"></textarea>
+            </div>
 
-        <!-- Submit Button -->
-        <input type="submit" value="Login" class="submit-btn"></input>
-    </form>
+            <!-- Submit Button -->
+            <input type="submit" value="Ask!" class="btn"></input>
+        </form>
+    </div>
 
     <!-- Question GridView -->
     <div class="question-grid">

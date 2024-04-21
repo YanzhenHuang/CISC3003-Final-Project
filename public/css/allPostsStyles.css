@@ -9,6 +9,26 @@
     --light-red: rgb(214, 89, 89);
 }
 
+/* Form for asking questions*/
+.ask-question-form {
+    margin: 0 auto;
+    padding: 3rem;
+    max-width: 50rem;
+    border-radius: 1rem;
+}
+
+.ask-question-form h1 {
+    margin: 0 0 1rem 0;
+}
+
+.ask-question-form #p_content {
+    width: calc(100%);
+    max-height: calc(30%);
+    resize: vertical;
+
+    margin-top: 1rem;
+
+}
 
 /* Grid layouts of question cards.*/
 .question-grid {
