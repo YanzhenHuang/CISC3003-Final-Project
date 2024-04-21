@@ -14,7 +14,7 @@ $u_pwd_hash = hash("sha256", $u_pwd);
 
 // Prepare SQL statement
 $sql_login = '
-    SELECT u_pwd FROM qa_user WHERE u_name = ?;
+    SELECT u_id, u_pwd FROM qa_user WHERE u_name = ?;
 ';
 
 $stmt_login = mysqli_stmt_init($conn);
@@ -29,17 +29,26 @@ mysqli_stmt_bind_param($stmt_login, 's', $u_name);
 mysqli_stmt_execute($stmt_login);
 
 // bind result to variable $db_u_pwd
-mysqli_stmt_bind_result($stmt_login, $db_u_pwd_hash);
+mysqli_stmt_bind_result($stmt_login, $db_u_id, $db_u_pwd_hash);
 
 // fetch result
 if (mysqli_stmt_fetch($stmt_login) && $db_u_pwd_hash == $u_pwd_hash) {
     echo "Password: " . $u_pwd . "<br>";
     echo "Login Success!!!";
+
+    // Use POST to pass user ID and user name.
+    session_start();
+    $_SESSION['u_id'] = $db_u_id;
+    $_SESSION['u_name'] = $u_name;
+    header("Location: ../all-posts.php");
 } else {
     echo "Login Failed <br>";
     echo "Password Inputted: " . $u_pwd . "<br>";
     echo "Password Hash: " . $u_pwd_hash . "<br>";
     echo "Password Hash from DB: " . $db_u_pwd_hash . "<br>";
+
+    // Login Failed, password doesn't match.
+    header("Location: ../login.php");
 }
 
 mysqli_stmt_close($stmt_login);

@@ -21,6 +21,25 @@
     <header>
         <img src="./images/Logo.png" class="login-signup-logo">
     </header>
+
+    <!-- Current User -->
+    <?php
+    session_start();
+
+    if (!isset($_SESSION['u_id']) || !isset($_SESSION['u_name'])) {
+        // Redirect user if session variables are not set
+        header("Location: login.php");
+        exit();
+    }
+
+    $login_uid = $_SESSION['u_id'];
+    $login_uname = $_SESSION['u_name'];
+
+    echo 'User Name: ' . $login_uname . '  ';
+    echo 'User ID: ' . $login_uid;
+    ?>
+
+    <!-- Question GridView -->
     <div class="question-grid">
         <?php
         include ('./php/config-db.php');
