@@ -18,6 +18,9 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
+    <!-- JavaScript -->
+    <script src="./js/handleEmptyForm.js"></script>
+
 </head>
 
 <body>
@@ -61,6 +64,7 @@
         </div>
     </div>
 </body>
+
 <script>
     function enterSite() {
         var overlay = document.getElementById('overlay');
@@ -75,32 +79,34 @@
 </script>
 
 <script>
-    let nonEmptyFields = document.querySelectorAll(".non-empty");
+    // let nonEmptyFields = document.querySelectorAll(".non-empty");
 
-    // Clear error styles of all inputs.
-    function clearAllFieldError() {
-        nonEmptyFields.forEach((field) => {
-            field.classList.remove('error');
-        });
-    }
+    // // Clear error styles of all inputs.
+    // function clearAllFieldError() {
+    //     nonEmptyFields.forEach((field) => {
+    //         field.classList.remove('error');
+    //     });
+    // }
 
-    // Register event: User click submit, check if there is any empty fields.
-    document.querySelector('#login').addEventListener('click', (e) => {
-        nonEmptyFields.forEach((field) => {
-            let curFieldVal = field.value;
-            if (curFieldVal == '') {
-                e.preventDefault();
-                field.classList.add('error');
-            }
-        })
-    })
+    // // Register event: User click submit, check if there is any empty fields.
+    // document.querySelector('#login').addEventListener('click', (e) => {
+    //     nonEmptyFields.forEach((field) => {
+    //         let curFieldVal = field.value;
+    //         if (curFieldVal == '') {
+    //             e.preventDefault();
+    //             field.classList.add('error');
+    //         }
+    //     })
+    // })
 
-    // Register clear all error events.
-    nonEmptyFields.forEach((field) => {
-        field.addEventListener('focus', (e) => {
-            clearAllFieldError();
-        })
-    });
+    // // Register clear all error events.
+    // nonEmptyFields.forEach((field) => {
+    //     field.addEventListener('focus', (e) => {
+    //         clearAllFieldError();
+    //     })
+    // });
+
+    handleEmptyForm('#login');
 
     // Switch to Sign up page.
     document.querySelector('#no-acc').addEventListener('click', (e) => {
