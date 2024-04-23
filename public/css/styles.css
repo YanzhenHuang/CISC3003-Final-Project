@@ -18,6 +18,10 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+body {
+    margin: 0;
+}
+
 header {
     background: var(--theme-color);
     display: flex;
