@@ -52,7 +52,7 @@
 
             <!-- New: User Email -->
             <div class="label-and-text-input">
-                <input type="text" class="non-empty" id="u_email" name="u_email" placeholder="Email">
+                <input type="text" class="non-empty email" id="u_email" name="u_email" placeholder="Email">
             </div>
 
             <!-- Password -->

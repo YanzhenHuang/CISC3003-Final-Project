@@ -1,9 +1,14 @@
+$emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 /**
  * @param {string} $submitButtonID The ID attribute of the submit button.
  */
 function handleEmptyForm($submitButtonID) {
     let nonEmptyFields = document.querySelectorAll(".non-empty");
+
+    function isEmailValid($emailStr) {
+        return $emailRegex.test($emailStr);
+    }
 
     // Clear error styles of all inputs.
     function clearAllFieldError() {
@@ -16,7 +21,8 @@ function handleEmptyForm($submitButtonID) {
     document.querySelector($submitButtonID).addEventListener('click', (e) => {
         nonEmptyFields.forEach((field) => {
             let curFieldVal = field.value;
-            if (curFieldVal == '') {
+            let isCurFieldEmail = field.classList.contains('email');
+            if (curFieldVal == '' || (isCurFieldEmail && !isEmailValid(curFieldVal))) {
                 e.preventDefault();
                 field.classList.add('error');
             }
