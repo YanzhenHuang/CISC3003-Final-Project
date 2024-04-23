@@ -44,6 +44,7 @@
             ?>
 
             <a href="login.php">&nbsp; &nbsp;Log Out</a>
+            <a href="./php/process-delAccount.php">&nbsp; &nbsp;Delete Account</a>
         </div>
     </header>
 
