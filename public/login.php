@@ -23,17 +23,17 @@
 
     <!-- PHP -->
     <?php
-    include ("./php/cookie-settings.php");
+    include ("./php/cookie-session-settings.php");
     ?>
 
 </head>
 
 <body>
 
-    <!-- Remove Cookies -->
+    <!-- Remove Sessions -->
     <?php
-    $cookieItems = ["u_id", "u_name"];
-    removeCookies($cookieItems);
+    $sessionItems = ["u_id", "u_name"];
+    removeSessions($sessionItems);
     ?>
 
     <!-- Intro Animation Overlay -->
