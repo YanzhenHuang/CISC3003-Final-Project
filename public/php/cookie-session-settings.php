@@ -8,3 +8,15 @@ function removeCookies($items)
         }
     }
 }
+
+function removeSessions($items)
+{
+    session_start();
+    foreach ($items as $item) {
+        if (isset($_SESSION[$item])) {
+            unset($_SESSION[$item]);
+        }
+    }
+
+    session_destroy();
+}
