@@ -1,0 +1,14 @@
+.stmt-posts-detail {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #089cc5;
+}
+
+.content {
+    margin-top: 5px;
+}

@@ -61,11 +61,10 @@
 
         // Output the result
         if (mysqli_stmt_fetch($stmt_posts_detail)) {
-            echo '<div class="question-title" id="p_id-' . $p_id . $u_name . '">';
-            echo '<p class="create-time">' . $p_create_time . '</p>';
-            echo '<p>' . $p_content . '</p>';
+            echo '<div class="stmt-posts-detail">';
+            echo '<p class="highlight">' . $u_name . ' - ' . $p_create_time . '</p>';
+            echo '<p class="content">' . $p_content . '</p>';
             echo '</div>';
-            // echo $p_id . '  ' . $u_name . '  ' . $p_content . '  ' . $p_create_time . '<br>';
         }
         ?>
 
