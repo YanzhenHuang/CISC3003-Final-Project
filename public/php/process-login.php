@@ -36,15 +36,6 @@ if (mysqli_stmt_fetch($stmt_login) && $db_u_pwd_hash == $u_pwd_hash) {
     echo "Password: " . $u_pwd . "<br>";
     echo "Login Success!!!";
 
-    // Use POST to pass user ID and user name.
-    // session_start();
-    // $_SESSION['u_id'] = $db_u_id;
-    // $_SESSION['u_name'] = $u_name;
-
-    // // Remove current cookie.
-    // $cookieItems = ["u_id", "u_name"];
-    // removeCookies($cookieItems);
-
     // Set a cookie that expires in 30 days
     setcookie("u_id", $db_u_id, time() + (86400 * 30), "/"); // 86400 = 1 day
     setcookie("u_name", $u_name, time() + (86400 * 30), "/");
