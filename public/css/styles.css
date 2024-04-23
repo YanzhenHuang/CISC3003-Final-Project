@@ -133,6 +133,14 @@ img {
     border-color: var(--theme-color);
 }
 
+/* Error Text Message */
+.error-text-msg {
+    color: var(--light-red);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.9rem;
+}
+
 /* Submit Button */
 .btn {
     display: block;

@@ -36,10 +36,11 @@
         <?php
         session_start();
         if (isset($_SESSION['error'])) {
-            echo '<span> Password and confirm password doesn\'t match. </span>';
+            echo '<p class="error-text-msg"> Password and confirm password doesn\'t match. </p>';
             unset($_SESSION['error']);
             session_destroy();
         }
+
 
         ?>
 
