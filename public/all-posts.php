@@ -23,27 +23,34 @@
 <body>
     <header>
         <img src="./images/Logo.png" class="login-signup-logo">
-        <a href="login.php">Log Out</a>
+
+        <div class="user-login-details">
+            <?php
+
+            // Examine if there are any existing login data.
+            if (!isset($_COOKIE['u_id']) || !isset($_COOKIE['u_name'])) {
+                // Redirect to login page if there's no login data.
+                header("Location: login.php");
+                exit();
+            }
+
+            // Retrieve user data from cookie.
+            $login_uid = $_COOKIE["u_id"];
+            $login_uname = $_COOKIE["u_name"];
+
+            // Display user data.
+            echo $login_uname . '<span>&nbsp;&nbsp;&nbsp;</span>';
+            echo 'UID: ' . $login_uid . '       ';
+            ?>
+
+            <a href="login.php">&nbsp; &nbsp;Log Out</a>
+        </div>
     </header>
 
     <!-- Current User -->
-    <?php
+    <div class="user-info-panel">
 
-    // Examine if there are any existing login data.
-    if (!isset($_COOKIE['u_id']) || !isset($_COOKIE['u_name'])) {
-        // Redirect to login page if there's no login data.
-        header("Location: login.php");
-        exit();
-    }
-
-    // Retrieve user data from cookie.
-    $login_uid = $_COOKIE["u_id"];
-    $login_uname = $_COOKIE["u_name"];
-
-    // Display user data.
-    echo 'User Name: ' . $login_uname . '  ';
-    echo 'User ID: ' . $login_uid;
-    ?>
+    </div>
 
     <!-- User Submit Form -->
     <div class="ask-question-form content-block">

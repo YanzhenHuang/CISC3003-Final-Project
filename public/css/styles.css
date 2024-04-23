@@ -26,6 +26,8 @@ header {
     background: var(--theme-color);
     display: flex;
     padding: 1rem 1rem 0.9rem 1rem;
+    color: white;
+    margin-bottom: 1rem;
     /* padding-bottom: 0.9rem; */
     justify-content: space-between;
     align-items: center;
