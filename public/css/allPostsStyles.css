@@ -117,3 +117,20 @@ header a {
     height: 8em;
     background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 1));
 }
+
+@media screen and (max-width: 800px) {
+
+    .ask-question-form,
+    .question-card {
+        border-radius: 0;
+    }
+
+    .question-grid {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .question-card {
+        max-width: 90%;
+    }
+}
