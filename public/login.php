@@ -21,9 +21,20 @@
     <!-- JavaScript -->
     <script src="./js/handleEmptyForm.js"></script>
 
+    <!-- PHP -->
+    <?php
+    include ("./php/cookie-settings.php");
+    ?>
+
 </head>
 
 <body>
+
+    <!-- Remove Cookies -->
+    <?php
+    $cookieItems = ["u_id", "u_name"];
+    removeCookies($cookieItems);
+    ?>
 
     <!-- Intro Animation Overlay -->
     <div class="overlay" id="overlay">
