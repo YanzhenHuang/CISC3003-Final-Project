@@ -3,7 +3,9 @@ include ('config-db.php');
 
 // Get User Name and User Password
 $u_name = $_POST['u_name'];
+$u_email = $_POST['u_email'];
 $u_pwd = $_POST['u_pwd'];
+$u_confirm_pwd = $_POST['u_confirm_pwd'];
 
 /**
  * @param $conn     MySQL Connection
@@ -45,17 +47,27 @@ function checkDupUserName($conn, $u_name)
 
 }
 
+
+// Check if password confirmation is correct
+if ($u_pwd != $u_confirm_pwd) {
+    session_start();
+    $_SESSION['error'] = "CONFIRM_ERR";
+    header('Location: ../signup.php');
+    die();
+}
+
 /*
     --------- 1. Initialize db connection ---------
 */
 $conn = initConnection($host, $username, $password, $dbname);
 
 // 1.1 Check for user name duplicates
-$haveDupUserName = checkDupUserName($conn, $u_name);
-echo $haveDupUserName == true ? "User name already exists." : "User name is available.";
+$haveDupUserName = checkDupUserAttribute($conn, $u_name, 'u_name');
+$haveDupUserEmail = checkDupUserAttribute($conn, $u_email, 'u_email');
+echo ($haveDupUserName || $haveDupUserEmail) == true ? "User name or email already exists." : "User name is available.";
 
 // If user name exists, then abort
-if ($haveDupUserName == true) {
+if ($haveDupUserName || $haveDupUserEmail == true) {
     die();
 }
 
@@ -64,7 +76,7 @@ $u_pwd_hash = hash('sha256', $u_pwd);
 
 // 2.1 Prepare Statement
 $sql_signup = '
-    INSERT INTO qa_user (u_name, u_pwd) VALUES (?, ?);
+    INSERT INTO qa_user (u_name, u_email, u_pwd) VALUES (?, ?, ?);
 ';
 
 $stmt_signup = mysqli_stmt_init($conn);
@@ -73,13 +85,15 @@ if (!mysqli_stmt_prepare($stmt_signup, $sql_signup)) {
 }
 
 // 2.2 Bind parameters
-mysqli_stmt_bind_param($stmt_signup, 'ss', $u_name, $u_pwd_hash);
+mysqli_stmt_bind_param($stmt_signup, 'sss', $u_name, $u_email, $u_pwd_hash);
 
 // 2.3 execute the query
 mysqli_stmt_execute($stmt_signup);
 
 echo '<br>';
 echo 'Sign Up Successful.';
+
+header('Location: ../login.php');
 
 mysqli_stmt_close($stmt_signup);
 mysqli_close($conn);

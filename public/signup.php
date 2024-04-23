@@ -32,11 +32,27 @@
         <h1>Sign Up</h1>
         <p>Ask whatever to whoever!</p>
 
+        <!-- Password and Confirm doesn't match -->
+        <?php
+        session_start();
+        if (isset($_SESSION['error'])) {
+            echo '<span> Password and confirm password doesn\'t match. </span>';
+            unset($_SESSION['error']);
+            session_destroy();
+        }
+
+        ?>
+
         <!-- User Submit Form-->
         <form action="./php/process-signup.php" method="post">
             <!-- User Name -->
             <div class="label-and-text-input">
                 <input type="text" class="non-empty" id="u_name" name="u_name" placeholder="User Name">
+            </div>
+
+            <!-- New: User Email -->
+            <div class="label-and-text-input">
+                <input type="text" class="non-empty" id="u_email" name="u_email" placeholder="Email">
             </div>
 
             <!-- Password -->
@@ -46,7 +62,8 @@
 
             <!-- Confirm Password -->
             <div class="label-and-text-input">
-                <input type="text" class="non-empty" id="u_confirm_pwd" placeholder="Confirm Password">
+                <input type="text" class="non-empty" id="u_confirm_pwd" name="u_confirm_pwd"
+                    placeholder="Confirm Password">
             </div>
 
             <!-- Submit Button -->
@@ -66,33 +83,7 @@
 </script>
 
 <script>
-    // let nonEmptyFields = document.querySelectorAll(".non-empty");
-
-    // // Clear error styles of all inputs.
-    // function clearAllFieldError() {
-    //     nonEmptyFields.forEach((field) => {
-    //         field.classList.remove('error');
-    //     });
-    // }
-
-    // // Register event: User click submit, check if there is any empty fields.
-    // document.querySelector('#signup').addEventListener('click', (e) => {
-    //     nonEmptyFields.forEach((field) => {
-    //         let curFieldVal = field.value;
-    //         if (curFieldVal == '') {
-    //             e.preventDefault();
-    //             field.classList.add('error');
-    //         }
-    //     })
-    // })
-
-    // // Register clear all error events.
-    // nonEmptyFields.forEach((field) => {
-    //     field.addEventListener('focus', (e) => {
-    //         clearAllFieldError();
-    //     })
-    // });
-
+    // Empty Form
     handleEmptyForm('#signup');
 
     // Switch to Sign up page.
