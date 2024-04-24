@@ -20,6 +20,28 @@
 <body>
     <header>
         <img src="./images/Logo.png" class="login-signup-logo">
+        <div class="user-login-details">
+            <?php
+            session_start();
+            // Examine if there are any existing login data.
+            if (!isset($_SESSION['u_id']) || !isset($_SESSION['u_name'])) {
+                // Redirect to login page if there's no login data.
+                header("Location: login.php");
+                exit();
+            }
+
+            // Retrieve user data from session.
+            $login_uid = $_SESSION["u_id"];
+            $login_uname = $_SESSION["u_name"];
+
+            // Display user data.
+            echo $login_uname . '<span>&nbsp;&nbsp;&nbsp;</span>';
+            echo 'UID: ' . $login_uid . '       ';
+            ?>
+
+            <a href="login.php">&nbsp; &nbsp;Log Out</a>
+            <a href="./php/process-delAccount.php">&nbsp; &nbsp;Delete Account</a>
+        </div>
     </header>
     <div class="question-grid">
 
@@ -90,15 +112,55 @@
         mysqli_stmt_bind_result($stmt_get_reply_by_p_id, $r_id, $r_u_name, $r_content, $r_create_time);
 
         // Replies
+        $i = 1; // Local variable to track sequential ID
         while (mysqli_stmt_fetch($stmt_get_reply_by_p_id)) {
-            echo 'rid' . $r_id . ' ' . $r_u_name . ' ' . $r_content . ' ' . $r_create_time . '<br>';
+
+            // Output the reply container
+            echo '<div class="reply-container">';
+
+            // First row: r_u_name and r_create_time
+            echo '<div class="reply-info">';
+            echo '<p class="reply-highlight">No.' . $i . ' - ' . $r_u_name . ' - ' . $r_create_time . '</p>';
+            echo '</div>';
+
+            // Second row: r_content
+            echo '<div class="reply-content">';
+            echo '<p>' . $r_content . '</p>';
+            echo '</div>';
+
+            echo '</div>'; // Close the reply container
+
+            $i++; // Increment the sequential ID
         }
 
         mysqli_stmt_close($stmt_get_reply_by_p_id);
         mysqli_close($conn);
 
+        
+
         ?>
     </div>
+    <div class="reply-question-form content-block">
+        <h1>Answer whatever to whoever!</h1>
+        <form action="./php/process-reply.php" method="post">
+
+            <!-- Hidden User ID Field -->
+            <?php
+            echo '<input type="hidden" id="uid" name="uid" value="' . $login_uid . '"></input>';
+            echo '<input type="hidden" id="pid" name="pid" value="' . $post_id . '"></input>'
+                ?>
+
+            <!-- Question Content -->
+            <div class="label-and-text-input">
+                <label for="r_content">Type in what you want to Answer:</label>
+                <textarea type="text" id="r_content" name="r_content" class="non-empty"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Answer!" class="btn" id="reply-question"></input>
+        </form>
+    </div>
+    
 
 
 </body>

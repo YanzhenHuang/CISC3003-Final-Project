@@ -12,3 +12,43 @@
 .content {
     margin-top: 5px;
 }
+
+.reply-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.reply-info {
+    margin-bottom: 5px;
+}
+
+.reply-highlight {
+    font-weight: bold;
+    color: #182104;
+}
+
+.reply-content {
+    margin-top: 5px;
+}
+
+/* Form for asking questions*/
+.reply-question-form {
+    margin: 0 auto;
+    padding: 3rem;
+    max-width: 50rem;
+    border-radius: 1rem;
+}
+
+.reply-question-form h1 {
+    margin: 0 0 1rem 0;
+}
+
+.reply-question-form #p_content {
+    width: calc(100%);
+    max-height: calc(30%);
+    resize: vertical;
+
+    margin-top: 1rem;
+
+}
