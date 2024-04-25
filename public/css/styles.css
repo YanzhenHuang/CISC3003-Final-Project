@@ -297,3 +297,8 @@ img {
 .visible {
     opacity: 1;
 }
+
+.empty-indicator {
+    text-align: center;
+    color: var(--gray-normal);
+}

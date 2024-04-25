@@ -170,6 +170,11 @@
 
             echo '</div>'; // Reply list
             
+            if ($i == 1) {
+                // No replies
+                echo '<div class="empty-indicator"><p>No replies yet.</p></div>';
+            }
+
             mysqli_stmt_close($stmt_get_reply_by_p_id);
             mysqli_close($conn);
 
