@@ -108,7 +108,7 @@ img {
 }
 
 .logo-container {
-    position: absolute;
+    position: relative;
     top: 3rem;
 
     display: flex;
@@ -121,7 +121,7 @@ img {
 
     background-color: var(--theme-color);
     border-radius: 100% / 100%;
-    margin: auto;
+    margin: 0 auto;
 
 }
 
