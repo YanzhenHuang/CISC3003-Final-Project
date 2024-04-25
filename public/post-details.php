@@ -151,7 +151,7 @@
                     echo '<p class="question-owner-tag" title="The question asker replied him/herself.">Question Owner</p>';
                 }
                 if ($this_reply_uid == $_SESSION['u_id']) {
-                    echo '<a> Delete Reply </a>';
+                    echo '<a class="delete-reply-btn" reply-id="' . $r_id . '"> Delete Reply </a>';
                 }
                 echo '</div>';
 
@@ -216,6 +216,7 @@
 
 </body>
 
+<!-- Delete Post -->
 <script>
     (function () {
         // Delete Post
@@ -240,7 +241,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     window.alert('Post had been deleted Successfully.');
-                    window.location.href = "all-posts.php";
+                    window.location.reload();
                 } else {
                     // window.alert('Network error, delete failed. Status: ' + xhr.status);
                     console.alert('Network error');
@@ -254,6 +255,48 @@
             console.log(thisPostId);
 
         })
+    })();
+</script>
+
+<!-- Delete Reply -->
+<script>
+    (function () {
+        // Delete reply buttonss
+        let delReplyButtons = document.querySelectorAll('.delete-reply-btn');
+        if (!delReplyButtons) {
+            console.log("Can't find any delete reply buttons.");
+            return;
+        }
+
+        delReplyButtons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                let thisReplyId = e.target.getAttribute('reply-id');
+                let url = './php/process-delete-reply.php';
+
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                // User confirm delete reply
+                if (!window.confirm('Delete this reply?')) {
+                    return;
+                }
+
+                // Delete result
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        window.alert('Reply had been deleted Successfully.');
+                        window.location.reload();
+                    } else {
+                        console.log('Network error, xhr state=' + xhr.readyState + ', xhr status=' +
+                            xhr.status);
+                    }
+                }
+
+                xhr.send('r_id=' + thisReplyId);
+            });
+        });
     })();
 </script>
 

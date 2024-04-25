@@ -61,6 +61,10 @@
     color: #182104;
 }
 
+.delete-reply-btn:hover {
+    cursor: pointer;
+}
+
 .reply-content {
     margin-top: 5px;
 }
