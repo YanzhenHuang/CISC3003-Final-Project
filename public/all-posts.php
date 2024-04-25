@@ -47,9 +47,14 @@
                 </div>
                 <div class="user-control-center hidden">
                     <ul>
-                        <li><a href="login.php">&nbsp; &nbsp;Log Out</a></li>
+                        <li>
+                            <a href="">About Me</a>
+                        </li>
+                        <li>
+                            <a href="login.php">Log Out</a>
+                        </li>
                         <li class="delete-acc">
-                            <a href="./php/process-delAccount.php">&nbsp; &nbsp;Delete Account</a>
+                            <a href="./php/process-delAccount.php">Delete Account</a>
                         </li>
                     </ul>
                 </div>
