@@ -63,6 +63,7 @@ header .user-control-center {
     background: white;
     color: var(--theme-color);
     box-shadow: rgba(74, 74, 74, 0.194) 0px 8px 24px;
+    z-index: 10;
 }
 
 header .user-control-center li {

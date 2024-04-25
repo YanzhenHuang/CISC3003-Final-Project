@@ -158,6 +158,9 @@
     let userControCenter = document.querySelector('.user-control-center');
     headerUserName.addEventListener('click', (e) => {
         userControCenter.classList.toggle('hidden');
+        setTimeout(() => {
+            userControCenter.classList.add('hidden');
+        }, 3000);
     });
 
     userControCenter.addEventListener('mouseleave', (e) => {
