@@ -15,6 +15,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+
+    <!-- PHP -->
+    <?php
+    include ('./php/config-db.php');
+    include ('./php/utils/formatter.inc.php');
+    session_start();
+    ?>
 </head>
 
 <body>
@@ -24,7 +31,6 @@
         </a>
         <div class="user-login-details">
             <?php
-            session_start();
             // Examine if there are any existing login data.
             if (!isset($_SESSION['u_id']) || !isset($_SESSION['u_name'])) {
                 // Redirect to login page if there's no login data.
@@ -49,7 +55,6 @@
 
         <!-- Question Details -->
         <?php
-        include ('./php/config-db.php');
         // Initialize db connection
         $conn = initConnection($host, $username, $password, $dbname);
         // Get the id from the URL parameter
@@ -106,7 +111,7 @@
         $conn = initConnection($host, $username, $password, $dbname);
 
         $sql_get_reply_by_p_id = '
-        SELECT r_id, u_name, r_content, r_create_time
+        SELECT r_id, qa_user.u_id, u_name, r_content, r_create_time
         FROM reply, qa_user
         WHERE qa_user.u_id = reply.u_id AND reply.p_id = ?;
         ';
@@ -119,18 +124,22 @@
 
         mysqli_stmt_bind_param($stmt_get_reply_by_p_id, 'i', $post_id);
         mysqli_stmt_execute($stmt_get_reply_by_p_id);
-        mysqli_stmt_bind_result($stmt_get_reply_by_p_id, $r_id, $r_u_name, $r_content, $r_create_time);
+        mysqli_stmt_bind_result($stmt_get_reply_by_p_id, $r_id, $this_reply_uid, $r_u_name, $r_content, $r_create_time);
 
         // Replies
         $i = 1; // Local variable to track sequential ID
         while (mysqli_stmt_fetch($stmt_get_reply_by_p_id)) {
+            // Format display time
+            $r_create_time = getDisplayTimeString($r_create_time);
 
             // Output the reply container
             echo '<div class="reply-container">';
 
             // First row: r_u_name and r_create_time
             echo '<div class="reply-info">';
-            echo '<p class="reply-highlight">No.' . $i . ' - ' . $r_u_name . ' - ' . $r_create_time . '</p>';
+            echo '<h3 class="reply-highlight">No.' . $i . ' - ' . $r_u_name . ' - ' . $r_create_time . '</h3>';
+            if ($this_reply_uid == $this_post_uid)
+                echo '<p class="question-owner-tag" title="The question asker replied him/herself.">Question Owner</p>';
             echo '</div>';
 
             // Second row: r_content
@@ -151,18 +160,6 @@
         ?>
     </div>
 
-    <!-- Delete Post -->
-    <?php
-    function renderDeletePostBtn($this_post_uid)
-    {
-        if ($_SESSION['u_id'] != $this_post_uid) {
-            return;
-        }
-        echo '<div class="btn danger" id="delete-post">Delete Post</div>';
-    }
-
-    renderDeletePostBtn($this_post_uid);
-    ?>
 
     <div class="reply-question-form content-block">
         <h3>Reply to <?php echo $login_uname ?> </h3>
@@ -184,6 +181,20 @@
             <input type="submit" value="Answer!" class="btn" id="reply-question"></input>
         </form>
     </div>
+
+    <!-- Delete Post -->
+    <?php
+    function renderDeletePostBtn($this_post_uid)
+    {
+        if ($_SESSION['u_id'] != $this_post_uid) {
+            return;
+        }
+        echo '<div class="btn danger" id="delete-post">Delete Post</div>';
+    }
+
+    renderDeletePostBtn($this_post_uid);
+    ?>
+
 </body>
 
 <script>

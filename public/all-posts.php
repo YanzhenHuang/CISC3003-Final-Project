@@ -18,6 +18,13 @@
 
     <!-- JavaScript -->
     <script src="./js/handleEmptyForm.js"></script>
+
+    <!-- PHP -->
+    <?php
+    include ('./php/config-db.php');
+    include ('./php/utils/formatter.inc.php');
+    session_start();
+    ?>
 </head>
 
 <body>
@@ -28,7 +35,6 @@
             <div class="header-user-info">
                 <div class="header-user-name">
                     <?php
-                    session_start();
                     // Examine if there are any existing login data.
                     if (!isset($_SESSION['u_id']) || !isset($_SESSION['u_name'])) {
                         // Redirect to login page if there's no login data.
@@ -91,29 +97,6 @@
     <!-- Question GridView -->
     <div class="question-grid">
         <?php
-        include ('./php/config-db.php');
-
-        function getDisplayTimeString($dateTimeStr)
-        {
-            // dateTimeStr format: 2024-04-20 00:49:09
-            $postDateTime = new DateTime($dateTimeStr);
-            $curDateTime = new DateTime();
-
-            $interval = $curDateTime->diff($postDateTime);
-
-            $displayTimeString = "";
-            if ($interval->y > 0) {
-                $displayTimeString = $interval->y . ' y ago';
-            } else if ($interval->m > 0) {
-                $displayTimeString = $interval->m . ' mo ago';
-            } else if ($interval->d > 0) {
-                $displayTimeString = $interval->d . ' d ago';
-            } else {
-                $displayTimeString = $postDateTime->format('H:i');
-            }
-
-            return $displayTimeString;
-        }
 
         // Initialize db connection
         $conn = initConnection($host, $username, $password, $dbname);
