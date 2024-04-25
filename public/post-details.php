@@ -187,30 +187,44 @@
 </body>
 
 <script>
-let delPostBtn = document.querySelector('#delete-post');
-delPostBtn.addEventListener('click', (e) => {
-    let url = './php/process-delete-post.php';
-    let xhr = new XMLHttpRequest();
-
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            window.alert('Post had been deleted Successfully.');
-            window.location.href = "all-posts.php";
-        } else {
-            console.log('Error: ' + xhr.status);
+    (function () {
+        // Delete Post
+        let delPostBtn = document.querySelector('#delete-post');
+        if (!delPostBtn) {
+            return;
         }
-    }
 
-    let urlParams = new URLSearchParams(window.location.search);
-    let thisPostId = urlParams.get('post_id');
+        delPostBtn.addEventListener('click', (e) => {
+            let url = './php/process-delete-post.php';
+            let xhr = new XMLHttpRequest();
 
-    xhr.send("p_id=" + thisPostId);
-    console.log(thisPostId);
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-});
+            // Confirm is user want to delete.
+            if (!window.confirm('Delete this post?')) {
+                return;
+            }
+
+            // Delete result
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    window.alert('Post had been deleted Successfully.');
+                    window.location.href = "all-posts.php";
+                } else {
+                    // window.alert('Network error, delete failed. Status: ' + xhr.status);
+                    console.alert('Network error');
+                }
+            }
+
+            let urlParams = new URLSearchParams(window.location.search);
+            let thisPostId = urlParams.get('post_id');
+
+            xhr.send("p_id=" + thisPostId);
+            console.log(thisPostId);
+
+        })
+    })();
 </script>
 
 </html>
