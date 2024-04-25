@@ -45,13 +45,7 @@
             $login_uid = $_SESSION["u_id"];
             $login_uname = $_SESSION["u_name"];
 
-            // Display user data.
-            echo $login_uname . '<span>&nbsp;&nbsp;&nbsp;</span>';
-            echo 'UID: ' . $login_uid . '       ';
             ?>
-
-            <a href="login.php">&nbsp; &nbsp;Log Out</a>
-            <a href="./php/process-delAccount.php">&nbsp; &nbsp;Delete Account</a>
         </div>
     </header>
 
@@ -104,6 +98,7 @@
         // Output the result
         if (mysqli_stmt_fetch($stmt_posts_detail)) {
             echo '<div class="stmt-posts-detail">';
+            echo '<p><a href="all-posts.php" class="weak-link">All Posts</a> / Post ' . $post_id . '</p>';
             echo '<p class="highlight">' . $this_post_uname . ' - ' . $p_create_time . '</p>';
             echo '<p class="content">' . $p_content . '</p>';
             echo '</div>';
@@ -151,7 +146,7 @@
                     echo '<p class="question-owner-tag" title="The question asker replied him/herself.">Question Owner</p>';
                 }
                 if ($this_reply_uid == $_SESSION['u_id']) {
-                    echo '<a class="delete-reply-btn" reply-id="' . $r_id . '"> Delete Reply </a>';
+                    echo '<a class="weak-link delete-reply-btn" reply-id="' . $r_id . '"> Delete Reply </a>';
                 }
                 echo '</div>';
 

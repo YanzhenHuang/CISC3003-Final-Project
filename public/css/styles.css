@@ -89,6 +89,11 @@ a {
     color: inherit;
 }
 
+.weak-link {
+    color: var(--theme-color);
+    font-weight: 600;
+}
+
 img {
     -webkit-user-drag: none;
 }
