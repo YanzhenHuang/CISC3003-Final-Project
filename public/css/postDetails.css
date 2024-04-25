@@ -37,11 +37,19 @@
     margin-bottom: 0.5rem;
 }
 
+.reply-info-extend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--theme-color);
+    font-weight: 600;
+}
+
 .question-owner-tag {
     margin: 0;
     background: var(--theme-color);
     color: white;
-    padding: 0.4rem;
+    padding: 0.2rem 0.4rem 0.2rem 0.4rem;
     font-size: 0.8rem;
     font-weight: 600;
     border-radius: 0.4rem;

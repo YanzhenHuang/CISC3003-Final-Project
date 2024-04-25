@@ -146,8 +146,15 @@
                 // First row: r_u_name and r_create_time
                 echo '<div class="reply-info">';
                 echo '<h3 class="reply-highlight">No.' . $i . ' - ' . $r_u_name . ' - ' . $r_create_time . '</h3>';
-                if ($this_reply_uid == $this_post_uid)
+                echo '<div class="reply-info-extend">';
+                if ($this_reply_uid == $this_post_uid) {
                     echo '<p class="question-owner-tag" title="The question asker replied him/herself.">Question Owner</p>';
+                }
+                if ($this_reply_uid == $_SESSION['u_id']) {
+                    echo '<a> Delete Reply </a>';
+                }
+                echo '</div>';
+
                 echo '</div>';
 
                 // Second row: r_content
