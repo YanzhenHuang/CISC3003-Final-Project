@@ -60,7 +60,7 @@
                             <a href="login.php">Log Out</a>
                         </li>
                         <li class="delete-acc">
-                            <a href="./php/process-delAccount.php">Delete Account</a>
+                            <a href="./php/process-delete-account.php">Delete Account</a>
                         </li>
                     </ul>
                 </div>
@@ -158,7 +158,7 @@
         e.preventDefault();
         if (window.confirm('Are you sure you want to delete your account?')) {
             // User confirmed, invoke default behavior
-            let url = './php/process-delAccount.php';
+            let url = './php/process-delete-account.php';
             let xhr = new XMLHttpRequest();
 
             // Asynchronously post to the server
