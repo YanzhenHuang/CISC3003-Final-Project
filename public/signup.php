@@ -48,7 +48,7 @@
         <form action="./php/process-signup.php" method="post">
             <!-- User Name -->
             <div class="label-and-text-input">
-                <input type="text" class="non-empty" id="u_name" name="u_name" placeholder="User Name">
+                <input type="text" class="non-empty user-name" id="u_name" name="u_name" placeholder="User Name">
             </div>
 
             <!-- New: User Email -->
