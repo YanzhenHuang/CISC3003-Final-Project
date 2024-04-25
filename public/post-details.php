@@ -51,7 +51,9 @@
             <a href="./php/process-delAccount.php">&nbsp; &nbsp;Delete Account</a>
         </div>
     </header>
-    <div class="question-grid">
+
+    <!-- Reply Content List -->
+    <div class="reply-content-list">
 
         <!-- Question Details -->
         <?php
@@ -106,61 +108,68 @@
         ?>
 
         <!-- Replies -->
-        <?php
-        // Initialize db connection
-        $conn = initConnection($host, $username, $password, $dbname);
+        <div class="reply-content-list">
+            <?php
+            // Initialize db connection
+            $conn = initConnection($host, $username, $password, $dbname);
 
-        $sql_get_reply_by_p_id = '
-        SELECT r_id, qa_user.u_id, u_name, r_content, r_create_time
-        FROM reply, qa_user
-        WHERE qa_user.u_id = reply.u_id AND reply.p_id = ?;
-        ';
+            $sql_get_reply_by_p_id = '
+                SELECT r_id, qa_user.u_id, u_name, r_content, r_create_time
+                FROM reply, qa_user
+                WHERE qa_user.u_id = reply.u_id AND reply.p_id = ?;
+            ';
 
-        $stmt_get_reply_by_p_id = mysqli_stmt_init($conn);
+            $stmt_get_reply_by_p_id = mysqli_stmt_init($conn);
 
-        if (!mysqli_stmt_prepare($stmt_get_reply_by_p_id, $sql_get_reply_by_p_id)) {
-            die('Prepared statement error.');
-        }
+            if (!mysqli_stmt_prepare($stmt_get_reply_by_p_id, $sql_get_reply_by_p_id)) {
+                die('Prepared statement error.');
+            }
 
-        mysqli_stmt_bind_param($stmt_get_reply_by_p_id, 'i', $post_id);
-        mysqli_stmt_execute($stmt_get_reply_by_p_id);
-        mysqli_stmt_bind_result($stmt_get_reply_by_p_id, $r_id, $this_reply_uid, $r_u_name, $r_content, $r_create_time);
+            mysqli_stmt_bind_param($stmt_get_reply_by_p_id, 'i', $post_id);
+            mysqli_stmt_execute($stmt_get_reply_by_p_id);
+            mysqli_stmt_bind_result($stmt_get_reply_by_p_id, $r_id, $this_reply_uid, $r_u_name, $r_content, $r_create_time);
 
-        // Replies
-        $i = 1; // Local variable to track sequential ID
-        while (mysqli_stmt_fetch($stmt_get_reply_by_p_id)) {
-            // Format display time
-            $r_create_time = getDisplayTimeString($r_create_time);
+            // Replies
+            echo '<div class="reply-list">';
+            $i = 1; // Local variable to track sequential ID
+            while (mysqli_stmt_fetch($stmt_get_reply_by_p_id)) {
+                // Format display time
+                $r_create_time = getDisplayTimeString($r_create_time);
 
-            // Output the reply container
-            echo '<div class="reply-container">';
+                // Output the reply container
+            
+                echo '<div class="reply-container">';
 
-            // First row: r_u_name and r_create_time
-            echo '<div class="reply-info">';
-            echo '<h3 class="reply-highlight">No.' . $i . ' - ' . $r_u_name . ' - ' . $r_create_time . '</h3>';
-            if ($this_reply_uid == $this_post_uid)
-                echo '<p class="question-owner-tag" title="The question asker replied him/herself.">Question Owner</p>';
-            echo '</div>';
+                // First row: r_u_name and r_create_time
+                echo '<div class="reply-info">';
+                echo '<h3 class="reply-highlight">No.' . $i . ' - ' . $r_u_name . ' - ' . $r_create_time . '</h3>';
+                if ($this_reply_uid == $this_post_uid)
+                    echo '<p class="question-owner-tag" title="The question asker replied him/herself.">Question Owner</p>';
+                echo '</div>';
 
-            // Second row: r_content
-            echo '<div class="reply-content">';
-            echo '<p>' . $r_content . '</p>';
-            echo '</div>';
+                // Second row: r_content
+                echo '<div class="reply-content">';
+                echo '<p>' . $r_content . '</p>';
+                echo '</div>';
 
-            echo '</div>'; // Close the reply container
-        
-            $i++; // Increment the sequential ID
-        }
+                echo '</div>'; // Close the reply container
+            
 
-        mysqli_stmt_close($stmt_get_reply_by_p_id);
-        mysqli_close($conn);
+                $i++; // Increment the sequential ID
+            }
+
+            echo '</div>'; // Reply list
+            
+            mysqli_stmt_close($stmt_get_reply_by_p_id);
+            mysqli_close($conn);
 
 
 
-        ?>
+            ?>
+        </div>
     </div>
 
-
+    <!-- Reply Module -->
     <div class="reply-question-form content-block">
         <h3>Reply to <?php echo $login_uname ?> </h3>
         <form action="./php/process-reply.php" method="post">
