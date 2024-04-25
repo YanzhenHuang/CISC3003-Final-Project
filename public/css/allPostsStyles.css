@@ -13,7 +13,7 @@
 .ask-question-form {
     margin: 0 auto;
     padding: 3rem;
-    max-width: 50rem;
+    max-width: 30rem;
     border-radius: 1rem;
 }
 
@@ -119,6 +119,7 @@
     .ask-question-form,
     .question-card {
         border-radius: 0;
+        max-width: calc(100%);
     }
 
     .question-grid {
