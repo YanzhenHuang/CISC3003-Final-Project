@@ -19,7 +19,9 @@
 
 <body>
     <header>
-        <img src="./images/Logo.png" class="login-signup-logo">
+        <a href="all-posts.php">
+            <img src="./images/Logo.png" class="login-signup-logo">
+        </a>
         <div class="user-login-details">
             <?php
             session_start();
@@ -129,19 +131,19 @@
             echo '</div>';
 
             echo '</div>'; // Close the reply container
-
+        
             $i++; // Increment the sequential ID
         }
 
         mysqli_stmt_close($stmt_get_reply_by_p_id);
         mysqli_close($conn);
 
-        
+
 
         ?>
     </div>
     <div class="reply-question-form content-block">
-        <h1>Answer whatever to whoever!</h1>
+        <h3>Reply to <?php echo $login_uname ?> </h3>
         <form action="./php/process-reply.php" method="post">
 
             <!-- Hidden User ID Field -->
@@ -160,9 +162,6 @@
             <input type="submit" value="Answer!" class="btn" id="reply-question"></input>
         </form>
     </div>
-    
-
-
 </body>
 
 </html>

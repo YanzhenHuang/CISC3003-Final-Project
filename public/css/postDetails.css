@@ -35,20 +35,24 @@
 /* Form for asking questions*/
 .reply-question-form {
     margin: 0 auto;
-    padding: 3rem;
-    max-width: 50rem;
+    padding: 1rem;
+    max-width: 30rem;
     border-radius: 1rem;
 }
 
-.reply-question-form h1 {
+.reply-question-form h3 {
     margin: 0 0 1rem 0;
 }
 
-.reply-question-form #p_content {
-    width: calc(100%);
+.reply-question-form #r_content {
+    width: calc(90%);
     max-height: calc(30%);
     resize: vertical;
-
+    margin: 0 auto;
     margin-top: 1rem;
+}
 
+.reply-question-form #reply-question {
+    max-width: calc(50%);
+    margin-left: calc(50%);
 }
