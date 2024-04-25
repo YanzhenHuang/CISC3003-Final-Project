@@ -61,21 +61,34 @@ header .user-control-center {
     position: absolute;
     top: 4rem;
     right: 1rem;
-    width: 200px;
+    width: 15.625rem;
     padding: 0.4rem;
     background: white;
     color: var(--theme-color);
     box-shadow: rgba(74, 74, 74, 0.194) 0px 8px 24px;
+    border-radius: 0.5rem;
     z-index: 10;
 }
 
 header .user-control-center li {
+    display: block;
+    align-items: center;
     padding: 0 0.8rem;
+    min-height: 50px;
+    border-radius: 0.3rem;
+}
+
+header .user-control-center li a {
+    display: block;
+    width: calc(100%);
+    min-height: 50px;
+    line-height: 50px;
 }
 
 header .user-control-center li:hover {
     background: var(--theme-color);
     color: white;
+    font-weight: 600;
 }
 
 header .user-control-center .delete-acc:hover {
