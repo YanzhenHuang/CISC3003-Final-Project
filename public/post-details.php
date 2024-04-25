@@ -258,7 +258,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     window.alert('Post had been deleted Successfully.');
-                    window.location.reload();
+                    window.location.href = "./all-posts.php";
                 } else {
                     // window.alert('Network error, delete failed. Status: ' + xhr.status);
                     console.alert('Network error');
