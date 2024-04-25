@@ -57,7 +57,7 @@
 
         // Prepare statement
         $sql_posts_detail = '
-        SELECT p_id, u_name, p_content, p_is_close, p_create_time 
+        SELECT p_id, qa_user.u_id, u_name, p_content, p_is_close, p_create_time 
         FROM post, qa_user
         WHERE qa_user.u_id = post.u_id AND p_id = ?
         ORDER BY p_create_time DESC;';
@@ -80,13 +80,21 @@
 
 
         // Bind result to variables
-        mysqli_stmt_bind_result($stmt_posts_detail, $p_id, $u_name, $p_content, $p_is_closed, $p_create_time);
+        mysqli_stmt_bind_result(
+            $stmt_posts_detail,
+            $this_post_pid,
+            $this_post_uid,
+            $this_post_uname,
+            $p_content,
+            $p_is_closed,
+            $p_create_time
+        );
 
 
         // Output the result
         if (mysqli_stmt_fetch($stmt_posts_detail)) {
             echo '<div class="stmt-posts-detail">';
-            echo '<p class="highlight">' . $u_name . ' - ' . $p_create_time . '</p>';
+            echo '<p class="highlight">' . $this_post_uname . ' - ' . $p_create_time . '</p>';
             echo '<p class="content">' . $p_content . '</p>';
             echo '</div>';
         }
@@ -142,6 +150,20 @@
 
         ?>
     </div>
+
+    <!-- Delete Post -->
+    <?php
+    function renderDeletePostBtn($this_post_uid)
+    {
+        if ($_SESSION['u_id'] != $this_post_uid) {
+            return;
+        }
+        echo '<div class="btn danger" id="delete-post">Delete Post</div>';
+    }
+
+    renderDeletePostBtn($this_post_uid);
+    ?>
+
     <div class="reply-question-form content-block">
         <h3>Reply to <?php echo $login_uname ?> </h3>
         <form action="./php/process-reply.php" method="post">
@@ -163,5 +185,32 @@
         </form>
     </div>
 </body>
+
+<script>
+let delPostBtn = document.querySelector('#delete-post');
+delPostBtn.addEventListener('click', (e) => {
+    let url = './php/process-delete-post.php';
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            window.alert('Post had been deleted Successfully.');
+            window.location.href = "all-posts.php";
+        } else {
+            console.log('Error: ' + xhr.status);
+        }
+    }
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let thisPostId = urlParams.get('post_id');
+
+    xhr.send("p_id=" + thisPostId);
+    console.log(thisPostId);
+
+});
+</script>
 
 </html>

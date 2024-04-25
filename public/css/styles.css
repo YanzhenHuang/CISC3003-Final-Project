@@ -6,7 +6,10 @@
     --gray-normal: rgb(207, 207, 207);
     --gray-heavy: rgb(169, 169, 169);
     --gray-transparent: rgba(35, 35, 35, 0.087);
-    --light-red: rgb(214, 89, 89);
+    --red-light: rgb(236, 163, 163);
+    --red-medium: rgb(214, 89, 89);
+    --red-heavy: rgb(186, 38, 38);
+    --red-transparent: rgba(236, 163, 163, 0.436);
 }
 
 * {
@@ -76,7 +79,7 @@ header .user-control-center li:hover {
 }
 
 header .user-control-center .delete-acc:hover {
-    background: var(--light-red);
+    background: var(--red-medium);
     color: white;
 }
 
@@ -168,7 +171,7 @@ img {
 
 .label-and-text-input input.error,
 .label-and-text-input textarea.error {
-    border-color: var(--light-red);
+    border-color: var(--red-medium);
 }
 
 .label-and-text-input input:hover {
@@ -183,7 +186,7 @@ img {
 
 /* Error Text Message */
 .error-text-msg {
-    color: var(--light-red);
+    color: var(--red-medium);
     font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 0.9rem;
@@ -195,9 +198,10 @@ img {
     margin: 0 auto;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    width: 100%;
+    width: calc(90%);
     padding: 0.9rem;
     border-radius: 3rem;
+    text-align: center;
 
     background: var(--theme-color);
     color: white;
@@ -209,6 +213,12 @@ img {
     margin-top: 0;
     color: black;
     background: var(--gray-normal);
+}
+
+.btn.danger {
+    margin-top: 0;
+    color: var(--red-heavy);
+    background: var(--red-light);
 }
 
 .btn:hover {
@@ -225,6 +235,11 @@ img {
 .btn.secondary:hover {
     background: var(--gray-light);
     box-shadow: var(--gray-transparent) 0px 8px 15px;
+}
+
+.btn.danger:hover {
+    background: var(--red-light);
+    box-shadow: var(--red-transparent) 0px 8px 15px;
 }
 
 

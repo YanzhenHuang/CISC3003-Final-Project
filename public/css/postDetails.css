@@ -56,3 +56,7 @@
     max-width: calc(50%);
     margin-left: calc(50%);
 }
+
+#delete-post {
+    width: calc(60%);
+}
