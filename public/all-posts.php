@@ -168,4 +168,31 @@
     });
 </script>
 
+<script>
+    // Delete User
+    let deleteAccBtn = document.querySelector('.delete-acc');
+    deleteAccBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (window.confirm('Are you sure you want to delete your account?')) {
+            // User confirmed, invoke default behavior
+            let url = './php/process-delAccount.php';
+            let xhr = new XMLHttpRequest();
+
+            // Asynchronously post to the server
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    window.location.href = "login.php";
+                } else {
+                    console.log("Error: " + xhr.status);
+                }
+            };
+
+            xhr.send();
+        }
+    });
+</script>
+
 </html>
