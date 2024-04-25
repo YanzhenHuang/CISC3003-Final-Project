@@ -31,7 +31,54 @@ header {
     /* padding-bottom: 0.9rem; */
     justify-content: space-between;
     align-items: center;
+    user-select: none;
+    -webkit-user-drag: none;
 }
+
+ul,
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header .header-user-name {
+    position: relative;
+}
+
+header .header-user-name:hover {
+    cursor: pointer;
+}
+
+header .user-control-center.hidden {
+    display: none;
+}
+
+header .user-control-center {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    width: 200px;
+    padding: 0.4rem;
+    background: white;
+    color: var(--theme-color);
+    box-shadow: rgba(74, 74, 74, 0.194) 0px 8px 24px;
+}
+
+header .user-control-center li {
+    padding: 0 0.8rem;
+}
+
+header .user-control-center li:hover {
+    background: var(--theme-color);
+    color: white;
+}
+
+header .user-control-center .delete-acc:hover {
+    background: var(--light-red);
+    color: white;
+}
+
 
 a {
     text-decoration: none;
@@ -52,7 +99,7 @@ img {
 }
 
 .logo-container {
-    position: relative;
+    position: absolute;
     top: 3rem;
 
     display: flex;

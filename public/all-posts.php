@@ -25,26 +25,35 @@
         <img src="./images/Logo.png" class="login-signup-logo">
 
         <div class="user-login-details">
-            <?php
-            session_start();
-            // Examine if there are any existing login data.
-            if (!isset($_SESSION['u_id']) || !isset($_SESSION['u_name'])) {
-                // Redirect to login page if there's no login data.
-                header("Location: login.php");
-                exit();
-            }
+            <div class="header-user-info">
+                <div class="header-user-name">
+                    <?php
+                    session_start();
+                    // Examine if there are any existing login data.
+                    if (!isset($_SESSION['u_id']) || !isset($_SESSION['u_name'])) {
+                        // Redirect to login page if there's no login data.
+                        header("Location: login.php");
+                        exit();
+                    }
 
-            // Retrieve user data from session.
-            $login_uid = $_SESSION["u_id"];
-            $login_uname = $_SESSION["u_name"];
+                    // Retrieve user data from session.
+                    $login_uid = $_SESSION["u_id"];
+                    $login_uname = $_SESSION["u_name"];
 
-            // Display user data.
-            echo $login_uname . '<span>&nbsp;&nbsp;&nbsp;</span>';
-            echo 'UID: ' . $login_uid . '       ';
-            ?>
-
-            <a href="login.php">&nbsp; &nbsp;Log Out</a>
-            <a href="./php/process-delAccount.php">&nbsp; &nbsp;Delete Account</a>
+                    // Display user data.
+                    echo $login_uname . '<span>&nbsp;&nbsp;&nbsp;</span>';
+                    echo 'UID: ' . $login_uid . '       ';
+                    ?>
+                </div>
+                <div class="user-control-center hidden">
+                    <ul>
+                        <li><a href="login.php">&nbsp; &nbsp;Log Out</a></li>
+                        <li class="delete-acc">
+                            <a href="./php/process-delAccount.php">&nbsp; &nbsp;Delete Account</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -140,6 +149,15 @@
 
 <script>
     handleEmptyForm('#ask-question');
+    let headerUserName = document.querySelector('.header-user-name');
+    let userControCenter = document.querySelector('.user-control-center');
+    headerUserName.addEventListener('click', (e) => {
+        userControCenter.classList.toggle('hidden');
+    });
+
+    userControCenter.addEventListener('mouseleave', (e) => {
+        userControCenter.classList.add('hidden');
+    });
 </script>
 
 </html>
