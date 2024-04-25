@@ -216,6 +216,23 @@
 
 </body>
 
+<!-- List Resize Detector -->
+<script>
+    let replyList = document.querySelector('.reply-list');
+    let observer = new MutationObserver(adjustReplyListStyle);
+
+    // Auto set overflow y property of reply list.
+    function adjustReplyListStyle() {
+        if (replyList.clientHeight > 650) {
+            replyList.style.overflowY = "scroll";
+        } else {
+            replyList.style.overflowY = "visible";
+        }
+    }
+
+    adjustReplyListStyle();
+</script>
+
 <!-- Delete Post -->
 <script>
     (function () {
@@ -300,8 +317,11 @@
     })();
 </script>
 
+<!-- Empty Form Handler -->
 <script>
     handleEmptyForm('#reply-question');
 </script>
+
+
 
 </html>
