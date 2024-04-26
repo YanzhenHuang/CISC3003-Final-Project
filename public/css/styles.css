@@ -210,6 +210,18 @@ img {
     margin-bottom: 0.9rem;
 }
 
+/* Password Visibility Toggle */
+.password-field-container {
+    position: relative;
+}
+
+.password-visibility-toggle {
+    position: absolute;
+    right: 1rem;
+    /* top: 1.5rem; */
+    top: 0.774rem;
+}
+
 /* Submit Button */
 .btn {
     display: block;

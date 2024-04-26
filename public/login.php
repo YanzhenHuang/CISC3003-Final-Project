@@ -20,6 +20,7 @@
 
     <!-- JavaScript -->
     <script src="./js/handleEmptyForm.js"></script>
+    <script src="./js/pwdVisibilityToggle.js"></script>
 
     <!-- PHP -->
     <?php
@@ -63,8 +64,9 @@
                 </div>
 
                 <!-- Password -->
-                <div class="label-and-text-input">
+                <div class="label-and-text-input password-field-container">
                     <input type="password" class="non-empty" id="u_pwd" name="u_pwd" placeholder="Password">
+                    <a class="password-visibility-toggle weak-link">Show</a>
                 </div>
 
                 <!-- Submit Button -->
@@ -91,6 +93,7 @@
 
 <script>
     handleEmptyForm('#login');
+    bindPasswordVisibilityToggles();
 
     // Switch to Sign up page.
     document.querySelector('#no-acc').addEventListener('click', (e) => {

@@ -20,6 +20,7 @@
 
     <!-- JavaScript -->
     <script src="./js/handleEmptyForm.js"></script>
+    <script src="./js/pwdVisibilityToggle.js"></script>
 </head>
 
 <body>
@@ -57,14 +58,16 @@
             </div>
 
             <!-- Password -->
-            <div class="label-and-text-input">
-                <input type="text" class="non-empty" id="u_pwd" name="u_pwd" placeholder="Password">
+            <div class="label-and-text-input password-field-container">
+                <input type="password" class="non-empty" id="u_pwd" name="u_pwd" placeholder="Password">
+                <a class="password-visibility-toggle weak-link">Show</a>
             </div>
 
             <!-- Confirm Password -->
-            <div class="label-and-text-input">
-                <input type="text" class="non-empty" id="u_confirm_pwd" name="u_confirm_pwd"
+            <div class="label-and-text-input password-field-container">
+                <input type="password" class="non-empty" id="u_confirm_pwd" name="u_confirm_pwd"
                     placeholder="Confirm Password">
+                <a class="password-visibility-toggle weak-link">Show</a>
             </div>
 
             <!-- Submit Button -->
@@ -86,6 +89,7 @@
 <script>
     // Empty Form
     handleEmptyForm('#signup');
+    bindPasswordVisibilityToggles();
 
     // Switch to Sign up page.
     document.querySelector('#have-acc').addEventListener('click', (e) => {
