@@ -105,6 +105,28 @@
         }
         ?>
 
+        <!-- Reply Module -->
+        <div class="reply-question-form reply-container">
+            <h3>Reply to <?php echo $login_uname ?> </h3>
+            <form action="./php/process-reply.php" method="post">
+
+                <!-- Hidden User ID Field -->
+                <?php
+                echo '<input type="hidden" id="uid" name="uid" value="' . $login_uid . '"></input>';
+                echo '<input type="hidden" id="pid" name="pid" value="' . $post_id . '"></input>'
+                    ?>
+
+                <!-- Question Content -->
+                <div class="label-and-text-input">
+                    <label for="r_content">Type in what you want to Answer:</label>
+                    <textarea type="text" id="r_content" name="r_content" class="non-empty"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <input type="submit" value="Answer!" class="btn" id="reply-question"></input>
+            </form>
+        </div>
+
         <!-- Replies -->
         <div class="reply-content-list">
             <?php
@@ -179,27 +201,7 @@
         </div>
     </div>
 
-    <!-- Reply Module -->
-    <div class="reply-question-form content-block">
-        <h3>Reply to <?php echo $login_uname ?> </h3>
-        <form action="./php/process-reply.php" method="post">
 
-            <!-- Hidden User ID Field -->
-            <?php
-            echo '<input type="hidden" id="uid" name="uid" value="' . $login_uid . '"></input>';
-            echo '<input type="hidden" id="pid" name="pid" value="' . $post_id . '"></input>'
-                ?>
-
-            <!-- Question Content -->
-            <div class="label-and-text-input">
-                <label for="r_content">Type in what you want to Answer:</label>
-                <textarea type="text" id="r_content" name="r_content" class="non-empty"></textarea>
-            </div>
-
-            <!-- Submit Button -->
-            <input type="submit" value="Answer!" class="btn" id="reply-question"></input>
-        </form>
-    </div>
 
     <!-- Delete Post -->
     <?php
@@ -218,108 +220,108 @@
 
 <!-- List Resize Detector -->
 <script>
-let replyList = document.querySelector('.reply-list');
-let observer = new MutationObserver(adjustReplyListStyle);
+    let replyList = document.querySelector('.reply-list');
+    let observer = new MutationObserver(adjustReplyListStyle);
 
-// Auto set overflow y property of reply list.
-function adjustReplyListStyle() {
-    if (replyList.clientHeight > 650) {
-        replyList.style.overflowY = "scroll";
-    } else {
-        replyList.style.overflowY = "visible";
+    // Auto set overflow y property of reply list.
+    function adjustReplyListStyle() {
+        if (replyList.clientHeight > 650) {
+            replyList.style.overflowY = "scroll";
+        } else {
+            replyList.style.overflowY = "visible";
+        }
     }
-}
 
-adjustReplyListStyle();
+    adjustReplyListStyle();
 </script>
 
 <!-- Delete Post -->
 <script>
-(function() {
-    // Delete Post
-    let delPostBtn = document.querySelector('#delete-post');
-    if (!delPostBtn) {
-        return;
-    }
-
-    delPostBtn.addEventListener('click', (e) => {
-        let url = './php/process-delete-post.php';
-        let xhr = new XMLHttpRequest();
-
-        xhr.open('POST', url, true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-        // Confirm is user want to delete.
-        if (!window.confirm('Delete this post?')) {
+    (function () {
+        // Delete Post
+        let delPostBtn = document.querySelector('#delete-post');
+        if (!delPostBtn) {
             return;
         }
 
-        // Delete result
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                window.alert('Post had been deleted Successfully.');
-                window.location.href = "./all-posts.php";
-            } else {
-                // window.alert('Network error, delete failed. Status: ' + xhr.status);
-                console.alert('Network error');
-            }
-        }
-
-        let urlParams = new URLSearchParams(window.location.search);
-        let thisPostId = urlParams.get('post_id');
-
-        xhr.send("p_id=" + thisPostId);
-        console.log(thisPostId);
-
-    })
-})();
-</script>
-
-<!-- Delete Reply -->
-<script>
-(function() {
-    // Delete reply buttonss
-    let delReplyButtons = document.querySelectorAll('.delete-reply-btn');
-    if (!delReplyButtons) {
-        console.log("Can't find any delete reply buttons.");
-        return;
-    }
-
-    delReplyButtons.forEach((button) => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            let thisReplyId = e.target.getAttribute('reply-id');
-            let url = './php/process-delete-reply.php';
-
+        delPostBtn.addEventListener('click', (e) => {
+            let url = './php/process-delete-post.php';
             let xhr = new XMLHttpRequest();
+
             xhr.open('POST', url, true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-            // User confirm delete reply
-            if (!window.confirm('Delete this reply?')) {
+            // Confirm is user want to delete.
+            if (!window.confirm('Delete this post?')) {
                 return;
             }
 
             // Delete result
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    window.alert('Reply had been deleted Successfully.');
-                    window.location.reload();
+                    window.alert('Post had been deleted Successfully.');
+                    window.location.href = "./all-posts.php";
                 } else {
-                    console.log('Network error, xhr state=' + xhr.readyState + ', xhr status=' +
-                        xhr.status);
+                    // window.alert('Network error, delete failed. Status: ' + xhr.status);
+                    console.alert('Network error');
                 }
             }
 
-            xhr.send('r_id=' + thisReplyId);
+            let urlParams = new URLSearchParams(window.location.search);
+            let thisPostId = urlParams.get('post_id');
+
+            xhr.send("p_id=" + thisPostId);
+            console.log(thisPostId);
+
+        })
+    })();
+</script>
+
+<!-- Delete Reply -->
+<script>
+    (function () {
+        // Delete reply buttonss
+        let delReplyButtons = document.querySelectorAll('.delete-reply-btn');
+        if (!delReplyButtons) {
+            console.log("Can't find any delete reply buttons.");
+            return;
+        }
+
+        delReplyButtons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                let thisReplyId = e.target.getAttribute('reply-id');
+                let url = './php/process-delete-reply.php';
+
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                // User confirm delete reply
+                if (!window.confirm('Delete this reply?')) {
+                    return;
+                }
+
+                // Delete result
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        window.alert('Reply had been deleted Successfully.');
+                        window.location.reload();
+                    } else {
+                        console.log('Network error, xhr state=' + xhr.readyState + ', xhr status=' +
+                            xhr.status);
+                    }
+                }
+
+                xhr.send('r_id=' + thisReplyId);
+            });
         });
-    });
-})();
+    })();
 </script>
 
 <!-- Empty Form Handler -->
 <script>
-handleEmptyForm('#reply-question');
+    handleEmptyForm('#reply-question');
 </script>
 
 

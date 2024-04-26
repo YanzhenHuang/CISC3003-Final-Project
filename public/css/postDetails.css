@@ -30,7 +30,7 @@
 }
 
 .reply-info {
-    margin-bottom: 5px;
+    margin-bottom: 0.3125rem;
 }
 
 .reply-info h3 {
@@ -70,10 +70,8 @@
 /* Form for replying to questions*/
 .reply-question-form {
     margin: 0 auto;
-    margin-top: 1rem;
+    margin-bottom: 0.625rem;
     padding: 1rem;
-    max-width: 30rem;
-    border-radius: 1rem;
 }
 
 .reply-question-form h3 {
@@ -89,8 +87,8 @@
 }
 
 .reply-question-form #reply-question {
-    max-width: calc(50%);
-    margin-left: calc(50%);
+    position: relative;
+    max-width: 10rem;
 }
 
 #delete-post {
