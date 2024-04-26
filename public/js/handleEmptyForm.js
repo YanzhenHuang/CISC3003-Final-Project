@@ -1,9 +1,6 @@
-let userNameRegex = /^[a-zA-Z0-9_-]{5,16}$/;
-let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
 let validFieldRegex = {
-    'user-name': userNameRegex,
-    'emaliRegex': emailRegex
+    'user-name': /^[a-zA-Z0-9_-]{5,16}$/,
+    'emaliRegex': /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 };
 
 function isFieldValueValid(fieldVal, fieldTag) {
