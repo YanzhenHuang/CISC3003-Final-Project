@@ -15,3 +15,8 @@ body {
     user-select: none;
     -webkit-user-select: none;
 }
+
+#no-acc,
+#have-acc {
+    margin-top: 1rem;
+}
