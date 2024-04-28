@@ -23,6 +23,7 @@
     <?php
     include ('./php/config-db.php');
     include ('./php/utils/formatter.inc.php');
+    include ('./php/components/button.php');
     session_start();
     ?>
 </head>
@@ -210,12 +211,15 @@
         }
         echo '<div class="h-btn-set">';
         if ($p_is_closed === 0) {
-            echo '<div class="btn secondary to-close" id="close-post">Close Post</div>';
+            // echo '<div class="btn secondary to-close" id="close-post">Close Post</div>';
+            renderButton(['secondary', 'to-close'], 'close-post', 'Close Post');
         } else {
-            echo '<div class="btn secondary" id="close-post">Re-Open Post</div>';
+            // echo '<div class="btn secondary" id="close-post">Re-Open Post</div>';
+            renderButton('secondary', 'close-post', 'Re-Open Post');
         }
 
-        echo '<div class="btn danger" id="delete-post">Delete Post</div>';
+        // echo '<div class="btn danger" id="delete-post">Delete Post</div>';
+        renderButton('danger', 'delete-post', 'Delete Post');
         echo '</div>';
     }
 

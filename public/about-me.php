@@ -26,6 +26,7 @@
     include ('./php/config-db.php');
     include ('./php/utils/formatter.inc.php');
     include ('./php/components/question-card.php');
+    include ('./php/components/button.php');
     session_start();
 
     // Examine if there are any existing login data.
@@ -135,6 +136,7 @@
             </span>
         </div>
 
+        <!-- List of User Information -->
         <div class="user-info-list">
             <table class="user-info-table">
                 <tr>
@@ -150,6 +152,13 @@
                     <td><?php echo $db_user_reply_num; ?></td>
                 </tr>
             </table>
+        </div>
+
+        <!-- Button: Alter User Information -->
+        <div class="h-btn-set">
+            <?php
+            renderButton('secondary', '', 'Edit Info');
+            ?>
         </div>
 
     </div>

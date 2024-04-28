@@ -95,11 +95,10 @@
     margin: 0;
 }
 
-#delete-post,
+/* #delete-post,
 #close-post {
     max-width: 10rem;
     height: 1.5rem;
     margin-top: 3rem;
-    /* line-height: 100%; */
     align-items: center;
-}
+} */
