@@ -95,6 +95,11 @@
         </form>
     </div>
 
+    <!-- Subject Title -->
+    <div class="subject-title-container">
+        <h2>All Questions</h2>
+    </div>
+
     <!-- Question GridView -->
     <div class="question-grid">
         <?php
