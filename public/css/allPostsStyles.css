@@ -1,3 +1,7 @@
+/**
+ * Styles for question cards.
+ */
+
 :root {
     --theme-color: #345ea1;
     --theme-color-light: #4270b9;
@@ -106,7 +110,7 @@
     text-overflow: ellipsis;
 }
 
-*/ .question-card .content {
+/* .question-card .content {
     display: block;
     margin: 0;
     height: calc(75%);
@@ -115,7 +119,7 @@
     white-space: normal;
 
     text-overflow: ellipsis;
-}
+} */
 
 .question-card .content::after {
     content: "";
