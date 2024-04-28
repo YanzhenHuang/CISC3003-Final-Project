@@ -337,19 +337,26 @@
             let url = './php/process-toggle-post.php';
             let xhr = new XMLHttpRequest();
 
-            // p_is_closed=0 -> Open
+            // Language Processing. p_is_closed=0 -> Open
             let closeOrOpen = closePostBtn.classList.contains('to-close') ? 1 : 0;
+            let promptText = closeOrOpen == 1 ? 'close' : 'open';
+            let promptTextPast = closeOrOpen == 1 ? 'd' : 'ed';
 
             xhr.open('POST', url, true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-            if (!window.confirm('Are you sure you want to close this post? Your action can be restored.')) {
+            if (
+                !window.confirm(
+                    'Are you sure you want to ' +
+                    promptText +
+                    ' this post? Your action can be restored.')
+            ) {
                 return;
             }
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    window.alert('Post had been closed successfully.');
+                    window.alert('Post had been ' + promptText + promptTextPast + ' successfully.');
                     window.location.reload();
                 } else {
                     console.alert('Network error');
