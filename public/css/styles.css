@@ -236,8 +236,11 @@ img {
     margin-top: 2rem;
     margin-bottom: 1rem;
     width: calc(90%);
-    padding: 0.9rem;
+    height: 3rem;
+    /* padding: 0.9rem; */
     border-radius: 3rem;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 
     background: var(--theme-color);
@@ -246,6 +249,12 @@ img {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
     user-select: none;
+}
+
+.btn .btn-text {
+    margin: auto 0;
+    text-align: center;
+    line-height: 3rem;
 }
 
 .btn.secondary {
@@ -285,8 +294,10 @@ img {
     /* Horizontal Button Set*/
     display: flex;
     margin: 0 auto;
+    margin-top: 1rem;
     justify-content: space-evenly;
     max-width: 30rem;
+    gap: 1rem;
 }
 
 
