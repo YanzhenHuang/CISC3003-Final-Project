@@ -233,8 +233,6 @@ img {
 .btn {
     display: block;
     margin: 0 auto;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
     width: calc(90%);
     height: 3rem;
     /* padding: 0.9rem; */
@@ -358,4 +356,9 @@ img {
 .empty-indicator {
     text-align: center;
     color: var(--gray-normal);
+}
+
+/* Hidden Forms */
+.hidden {
+    display: none;
 }
