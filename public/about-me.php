@@ -124,8 +124,22 @@
         </a>
     </header>
 
+
+
     <!-- User Info -->
     <div class="user-info content-block" id="user-info">
+        <!-- Error Indicator -->
+        <?php
+        if (isset($_SESSION['CHANGE_ERR'])) {
+            echo '
+            <div class="error-indicator">
+                ' . $_SESSION['CHANGE_ERR'] . '
+            </div>
+            ';
+            unset($_SESSION['CHANGE_ERR']);
+        }
+
+        ?>
         <!-- User Info Title -->
         <div class="user-info-title card-title">
             <span class="user-name primary">
@@ -163,12 +177,16 @@
     </div>
 
     <!-- Edit User Info -->
-    <div class="edit-user-info content-block hidden" id="edit-user-info-form">
-        <form>
+    <div class="edit-user-info content-block hidden" id="edit-user-info-form-container">
+        <form action="./php/process-alter-user-details.php" method="POST" id="edit-user-info-form">
+            <!-- Hidden Input -->
+            <input type="hidden" name="origin_u_name" value="<?php echo $login_uname ?>"></input>
+            <input type="hidden" name="origin_u_email" value="<?php echo $db_u_email ?>"></input>
+
             <!-- User Info Title -->
             <div class="user-info-title card-title">
                 <span class="user-name primary">
-                    <input type="text" name="new_u_email" class="primary" id="new_u_email"
+                    <input type="text" name="new_u_name" class="primary" id="new_u_name"
                         value="<?php echo $login_uname; ?>">
                     </input>
                 </span>
@@ -243,15 +261,24 @@
     // Content Blocks
     let userInfo = document.querySelector('#user-info');
     let editUserInfoForm = document.querySelector('#edit-user-info-form');
+    let editUserInfoFormContainer = document.querySelector('#edit-user-info-form-container');
+
+    // Inputs
+    let inputFields = document.querySelectorAll('#edit-user-info-form input');
 
     editInfoBtn.addEventListener('click', (e) => {
         userInfo.classList.add('hidden');
-        editUserInfoForm.classList.remove('hidden');
+        editUserInfoFormContainer.classList.remove('hidden');
     });
 
     cancelEditBtn.addEventListener('click', (e) => {
         userInfo.classList.remove('hidden');
-        editUserInfoForm.classList.add('hidden');
+        editUserInfoFormContainer.classList.add('hidden');
+    });
+
+    // Ajax
+    confirmEditBtn.addEventListener('click', (e) => {
+        editUserInfoForm.submit();
     });
 </script>
 

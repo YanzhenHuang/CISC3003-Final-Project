@@ -362,3 +362,10 @@ img {
 .hidden {
     display: none;
 }
+
+/* Error Indicator */
+.error-indicator {
+    color: var(--light-red);
+    font-weight: 600;
+    text-align: center;
+}
