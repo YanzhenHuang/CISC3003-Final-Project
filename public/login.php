@@ -24,7 +24,7 @@
 
     <!-- PHP -->
     <?php
-    include ("./php/cookie-session-settings.php");
+    include ("./php/utils/cookie-session-settings.php");
     ?>
 
 </head>
