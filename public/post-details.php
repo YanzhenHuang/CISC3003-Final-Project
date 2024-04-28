@@ -210,12 +210,12 @@
         }
         echo '<div class="h-btn-set">';
         if ($p_is_closed === 0) {
-            echo '<div class="btn secondary to-close" id="close-post"><p>Close Post</p></div>';
+            echo '<div class="btn secondary to-close" id="close-post">Close Post</div>';
         } else {
-            echo '<div class="btn secondary" id="close-post"><p>Re-Open Post</p></div>';
+            echo '<div class="btn secondary" id="close-post">Re-Open Post</div>';
         }
 
-        echo '<div class="btn danger" id="delete-post"><p>Delete Post</p></div>';
+        echo '<div class="btn danger" id="delete-post">Delete Post</div>';
         echo '</div>';
     }
 
