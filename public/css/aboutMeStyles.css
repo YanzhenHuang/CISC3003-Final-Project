@@ -3,4 +3,19 @@
     margin: 0 auto;
     border-radius: 0.5rem;
     padding: 1rem;
+    user-select: none;
+}
+
+.user-info-title {
+    font-size: 1.2rem;
+}
+
+
+.user-info-list table {
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.user-info-list table th {
+    padding-right: 0.5rem;
 }
