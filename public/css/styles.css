@@ -111,6 +111,13 @@ img {
     -webkit-user-drag: none;
 }
 
+/* Subject Title */
+.subject-title-container {
+    display: block;
+    margin-top: 2rem;
+    padding: 0 1rem 0 2.5rem;
+}
+
 
 /* Login/Singin Top Logo*/
 .login-signup-logo {
