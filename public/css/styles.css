@@ -237,6 +237,8 @@ img {
     color: white;
     border: none;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+    user-select: none;
 }
 
 .btn.secondary {
