@@ -26,6 +26,48 @@
     include ('./php/components/button.php');
     session_start();
     ?>
+
+    <!-- PHP: Get all the questions. -->
+    <?php
+    // Initialize db connection
+    $conn = initConnection($host, $username, $password, $dbname);
+    // Get the id from the URL parameter
+    $post_id = isset($_GET['post_id']) ? $_GET['post_id'] : 1;
+
+    // Prepare statement
+    $sql_posts_detail = '
+            SELECT p_id, qa_user.u_id, u_name, p_content, p_is_close, p_create_time 
+            FROM post, qa_user
+            WHERE qa_user.u_id = post.u_id AND p_id = ?
+            ORDER BY p_create_time DESC;';
+
+    $stmt_posts_detail = mysqli_stmt_init($conn);
+
+
+    if (!mysqli_stmt_prepare($stmt_posts_detail, $sql_posts_detail)) {
+        die('Prepared statement error.');
+    }
+
+    // Bind the post_id parameter to the prepared statement
+    mysqli_stmt_bind_param($stmt_posts_detail, 'i', $post_id);
+
+
+    // Execute
+    mysqli_stmt_execute($stmt_posts_detail);
+
+
+    // Bind result to variables
+    mysqli_stmt_bind_result(
+        $stmt_posts_detail,
+        $this_post_pid,
+        $this_post_uid,
+        $this_post_uname,
+        $p_content,
+        $p_is_closed,
+        $p_create_time
+    );
+
+    ?>
 </head>
 
 <body>
@@ -55,46 +97,6 @@
 
         <!-- Question Details -->
         <?php
-        // Initialize db connection
-        $conn = initConnection($host, $username, $password, $dbname);
-        // Get the id from the URL parameter
-        $post_id = isset($_GET['post_id']) ? $_GET['post_id'] : 1;
-
-        // Prepare statement
-        $sql_posts_detail = '
-        SELECT p_id, qa_user.u_id, u_name, p_content, p_is_close, p_create_time 
-        FROM post, qa_user
-        WHERE qa_user.u_id = post.u_id AND p_id = ?
-        ORDER BY p_create_time DESC;';
-
-
-
-        $stmt_posts_detail = mysqli_stmt_init($conn);
-
-
-        if (!mysqli_stmt_prepare($stmt_posts_detail, $sql_posts_detail)) {
-            die('Prepared statement error.');
-        }
-
-        // Bind the post_id parameter to the prepared statement
-        mysqli_stmt_bind_param($stmt_posts_detail, 'i', $post_id);
-
-
-        // Execute
-        mysqli_stmt_execute($stmt_posts_detail);
-
-
-        // Bind result to variables
-        mysqli_stmt_bind_result(
-            $stmt_posts_detail,
-            $this_post_pid,
-            $this_post_uid,
-            $this_post_uname,
-            $p_content,
-            $p_is_closed,
-            $p_create_time
-        );
-
 
         // Output the result
         if (mysqli_stmt_fetch($stmt_posts_detail)) {
@@ -127,6 +129,17 @@
                 <input type="submit" value="Answer!" class="btn" id="reply-question"></input>
             </form>
         </div>
+
+        <!-- Post Close Indicator -->
+        <?php
+        if ($p_is_closed == 1) {
+            echo '
+        <div class="question-close-indicator">
+        This question has been closed by the author.
+        </div>
+        ';
+        }
+        ?>
 
         <!-- Replies -->
         <div class="reply-content-list">
@@ -201,6 +214,8 @@
             ?>
         </div>
     </div>
+
+
 
     <!-- Close & Delete Post Button -->
     <?php

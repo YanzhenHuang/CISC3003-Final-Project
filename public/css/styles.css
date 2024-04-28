@@ -1,15 +1,26 @@
 :root {
+    /* Theme Color */
     --theme-color: #345ea1;
     --theme-color-light: #4270b9;
     --theme-color-transparent: #345ea15f;
+
+    /* Gray */
     --gray-light: rgb(222, 222, 222);
     --gray-normal: rgb(207, 207, 207);
     --gray-heavy: rgb(169, 169, 169);
     --gray-transparent: rgba(35, 35, 35, 0.087);
+
+    /* Red */
     --red-light: rgb(236, 163, 163);
     --red-medium: rgb(214, 89, 89);
     --red-heavy: rgb(186, 38, 38);
     --red-transparent: rgba(236, 163, 163, 0.436);
+
+    /* Green */
+    --green-light: rgb(144, 206, 144);
+    --green-medium: rgb(84, 173, 84);
+    --green-heavy: rgb(36, 116, 36);
+    --green-transparent: rgba(163, 236, 163, 0.436);
 }
 
 * {
@@ -365,7 +376,14 @@ img {
 
 /* Error Indicator */
 .error-indicator {
-    color: var(--light-red);
+    color: var(--red-medium);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Question Closed Indicator */
+.question-close-indicator {
+    color: var(--green-medium);
     font-weight: 600;
     text-align: center;
 }
