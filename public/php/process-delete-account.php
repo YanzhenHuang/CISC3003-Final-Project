@@ -1,6 +1,6 @@
 <?php
 include ('config-db.php');
-include ('cookie-session-settings.php');
+include ('./utils/cookie-session-settings.php');
 
 session_start();
 

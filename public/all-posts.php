@@ -23,6 +23,7 @@
     <?php
     include ('./php/config-db.php');
     include ('./php/utils/formatter.inc.php');
+    include ('./php/components/question-card.php');
     session_start();
     ?>
 </head>
@@ -54,7 +55,7 @@
                 <div class="user-control-center hidden">
                     <ul>
                         <li>
-                            <a href="">About Me</a>
+                            <a href="about-me.php">About Me</a>
                         </li>
                         <li>
                             <a href="login.php">Log Out</a>
@@ -94,6 +95,11 @@
         </form>
     </div>
 
+    <!-- Subject Title -->
+    <div class="subject-title-container">
+        <h2>All Questions</h2>
+    </div>
+
     <!-- Question GridView -->
     <div class="question-grid">
         <?php
@@ -117,31 +123,7 @@
         mysqli_stmt_bind_result($stmt_all_posts, $p_id, $u_name, $p_content, $p_is_closed, $p_create_time);
 
         while (mysqli_stmt_fetch($stmt_all_posts)) {
-            // Format display time
-            $p_create_time = getDisplayTimeString($p_create_time);
-            $close_style_tag = '';
-            $p_is_closed == 1 ? $close_style_tag = 'question-closed' : '';
-
-            echo '<a href="./post-details.php?post_id=' . $p_id . '">';
-            echo '<div class="question-card content-block ' . $close_style_tag . '" id="p_id-' . $p_id . '">';
-
-            // Question card header
-            echo '<div class="card-title">';
-            echo '<p class="user-name">' . $u_name . '</p> ';
-
-            echo '<div class="question-status-container">';
-            if ($p_is_closed == 1)
-                echo '<p class="closed-tag">Closed</p>';
-            echo '<p class="create-time">' . $p_create_time . '</p>';
-            echo '</div>';
-
-            echo '</div>';
-
-            echo '<p class="content">' . $p_content . '</p>';
-
-            echo '</div>';
-            echo '</a>';
-            // echo $p_id . '  ' . $u_name . '  ' . $p_content . '  ' . $p_create_time . '<br>';
+            renderQuestionCard($p_id, $u_name, $p_is_closed, $p_create_time, $p_content);
         } ?>
 
     </div>

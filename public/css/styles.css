@@ -1,15 +1,26 @@
 :root {
+    /* Theme Color */
     --theme-color: #345ea1;
     --theme-color-light: #4270b9;
     --theme-color-transparent: #345ea15f;
+
+    /* Gray */
     --gray-light: rgb(222, 222, 222);
     --gray-normal: rgb(207, 207, 207);
     --gray-heavy: rgb(169, 169, 169);
     --gray-transparent: rgba(35, 35, 35, 0.087);
+
+    /* Red */
     --red-light: rgb(236, 163, 163);
     --red-medium: rgb(214, 89, 89);
     --red-heavy: rgb(186, 38, 38);
     --red-transparent: rgba(236, 163, 163, 0.436);
+
+    /* Green */
+    --green-light: rgb(144, 206, 144);
+    --green-medium: rgb(84, 173, 84);
+    --green-heavy: rgb(36, 116, 36);
+    --green-transparent: rgba(163, 236, 163, 0.436);
 }
 
 * {
@@ -109,6 +120,13 @@ a {
 
 img {
     -webkit-user-drag: none;
+}
+
+/* Subject Title */
+.subject-title-container {
+    display: block;
+    margin-top: 2rem;
+    padding: 0 1rem 0 2.5rem;
 }
 
 
@@ -226,11 +244,12 @@ img {
 .btn {
     display: block;
     margin: 0 auto;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
     width: calc(90%);
-    padding: 0.9rem;
+    height: 3rem;
+    /* padding: 0.9rem; */
     border-radius: 3rem;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 
     background: var(--theme-color);
@@ -239,6 +258,12 @@ img {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
     user-select: none;
+}
+
+.btn .btn-text {
+    margin: auto 0;
+    text-align: center;
+    line-height: 3rem;
 }
 
 .btn.secondary {
@@ -278,8 +303,10 @@ img {
     /* Horizontal Button Set*/
     display: flex;
     margin: 0 auto;
+    margin-top: 1rem;
     justify-content: space-evenly;
     max-width: 30rem;
+    gap: 1rem;
 }
 
 
@@ -340,4 +367,23 @@ img {
 .empty-indicator {
     text-align: center;
     color: var(--gray-normal);
+}
+
+/* Hidden Forms */
+.hidden {
+    display: none;
+}
+
+/* Error Indicator */
+.error-indicator {
+    color: var(--red-medium);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Question Closed Indicator */
+.question-close-indicator {
+    color: var(--green-medium);
+    font-weight: 600;
+    text-align: center;
 }
