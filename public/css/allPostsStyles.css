@@ -62,7 +62,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.question-card .card-title {
+.card-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,12 +82,12 @@
     font-weight: 600;
 }
 
-.question-card .card-title .user-name {
+.card-title .primary {
     font-weight: 600;
     color: var(--theme-color);
 }
 
-.question-card .card-title .create-time {
+.card-title .secondary {
     font-size: 0.8rem;
     opacity: 0.75;
     color: var(--gray-heavy);

@@ -20,12 +20,12 @@ function renderQuestionCard($p_id, $u_name, $p_is_closed, $p_create_time, $p_con
 
     // Question card header
     echo '<div class="card-title">';
-    echo '<p class="user-name">' . $u_name . '</p> ';
+    echo '<p class="user-name primary">' . $u_name . '</p> ';
 
     echo '<div class="question-status-container">';
     if ($p_is_closed == 1)
         echo '<p class="closed-tag">Closed</p>';
-    echo '<p class="create-time">' . $p_create_time . '</p>';
+    echo '<p class="create-time secondary">' . $p_create_time . '</p>';
     echo '</div>';
 
     echo '</div>';
