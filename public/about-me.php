@@ -125,7 +125,7 @@
     </header>
 
     <!-- User Info -->
-    <div class="user-info content-block">
+    <div class="user-info content-block" id="user-info">
         <!-- User Info Title -->
         <div class="user-info-title card-title">
             <span class="user-name primary">
@@ -157,9 +157,45 @@
         <!-- Button: Alter User Information -->
         <div class="h-btn-set">
             <?php
-            renderButton('secondary', '', 'Edit Info');
+            renderButton('secondary', 'edit-info', 'Edit Info');
             ?>
         </div>
+    </div>
+
+    <!-- Edit User Info -->
+    <div class="edit-user-info content-block hidden" id="edit-user-info-form">
+        <form>
+            <!-- User Info Title -->
+            <div class="user-info-title card-title">
+                <span class="user-name primary">
+                    <input type="text" name="new_u_email" class="primary" id="new_u_email"
+                        value="<?php echo $login_uname; ?>">
+                    </input>
+                </span>
+                <span class="user-id secondary">
+                    UID: <?php echo $login_uid; ?>
+                </span>
+            </div>
+
+            <!-- User Email -->
+            <div class="user-info-list">
+                <table class="user-info-table">
+                    <tr>
+                        <th>Email</th>
+                        <td>
+                            <input type="text" name="new_u_email" id="new_u_email" value="<?php echo $db_u_email; ?>">
+                            </input>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Operation Buttons -->
+            <div class="edit-operations h-btn-set">
+                <?php renderButton('secondary', 'cancel-edit', 'Cancel'); ?>
+                <?php renderButton('', 'confirm-edit', 'Confirm'); ?>
+            </div>
+        </form>
 
     </div>
 
@@ -197,5 +233,26 @@
         ?>
     </div>
 </body>
+
+<script>
+    // Buttons
+    let editInfoBtn = document.querySelector('#edit-info');
+    let cancelEditBtn = document.querySelector('#cancel-edit');
+    let confirmEditBtn = document.querySelector('#confirm-edit');
+
+    // Content Blocks
+    let userInfo = document.querySelector('#user-info');
+    let editUserInfoForm = document.querySelector('#edit-user-info-form');
+
+    editInfoBtn.addEventListener('click', (e) => {
+        userInfo.classList.add('hidden');
+        editUserInfoForm.classList.remove('hidden');
+    });
+
+    cancelEditBtn.addEventListener('click', (e) => {
+        userInfo.classList.remove('hidden');
+        editUserInfoForm.classList.add('hidden');
+    });
+</script>
 
 </html>

@@ -1,4 +1,5 @@
-.user-info {
+.user-info,
+.edit-user-info {
     max-width: 30rem;
     margin: 0 auto;
     border-radius: 0.5rem;
