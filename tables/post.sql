@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2024 at 01:36 PM
+-- Generation Time: Apr 28, 2024 at 03:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,16 +41,14 @@ CREATE TABLE `post` (
 
 INSERT INTO `post` (`p_id`, `u_id`, `p_content`, `p_is_close`, `p_create_time`) VALUES
 (1, 1, 'This is a message from Admin.', 0, '2024-04-19 11:48:38'),
-(2, 1, 'This is another message from admin.', 0, '2024-04-19 11:48:38'),
+(2, 1, 'This is another message from admin.', 1, '2024-04-19 11:48:38'),
 (3, 3, 'Aminos', 0, '2024-04-19 11:48:38'),
 (4, 2, '123', 0, '2024-04-19 11:48:38'),
-(5, 2, 'Test', 0, '2024-04-19 11:48:38'),
 (6, 1, 'This is a test of database.', 0, '2024-04-19 11:50:06'),
 (7, 1, 'test', 0, '2024-04-19 16:43:54'),
 (8, 1, 'test', 0, '2024-04-19 16:43:58'),
 (9, 1, 'test 123123', 0, '2024-04-19 16:44:02'),
 (10, 1, 'Hahahahaha', 0, '2024-04-19 16:44:07'),
-(11, 2, 'My name is Guo Pengze.', 0, '2024-04-19 16:45:22'),
 (12, 3, 'My name is Guo Pengze 2.', 0, '2024-04-19 16:45:30'),
 (13, 3, 'My name is Guo Pengze 3.', 0, '2024-04-19 16:45:33'),
 (14, 3, 'My name is Guo Pengze 4.', 0, '2024-04-19 16:45:38'),
@@ -63,7 +61,11 @@ INSERT INTO `post` (`p_id`, `u_id`, `p_content`, `p_is_close`, `p_create_time`) 
 (21, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in', 0, '2024-04-20 10:14:47'),
 (22, 5, 'lorem ipsum layout test', 0, '2024-04-20 10:16:00'),
 (23, 6, 'I am huang yanzhen', 0, '2024-04-20 10:17:42'),
-(24, 6, 'I am huang yanzhen. I am a fashionboy.', 0, '2024-04-20 10:38:28');
+(24, 6, 'I am huang yanzhen. I am a fashionboy.', 0, '2024-04-20 10:38:28'),
+(25, 3, 'Test', 0, '2024-04-21 14:57:17'),
+(27, 38, 'Test delete behavior.', 0, '2024-04-23 14:12:53'),
+(28, 38, 'test agatest agatest agatest agatest agatest agatest agatest aga', 0, '2024-04-23 14:13:02'),
+(38, 2, 'Wuuuu~', 1, '2024-04-27 18:46:36');
 
 --
 -- Indexes for dumped tables
@@ -84,17 +86,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `post`
---
-ALTER TABLE `post`
-  ADD CONSTRAINT `User Post` FOREIGN KEY (`u_id`) REFERENCES `qa_user` (`u_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
