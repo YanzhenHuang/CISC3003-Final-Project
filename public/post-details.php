@@ -203,18 +203,23 @@
 
     <!-- Close & Delete Post Button -->
     <?php
-    function renderDeletePostBtn($this_post_uid)
+    function renderDeletePostBtn($this_post_uid, $p_is_closed)
     {
         if ($_SESSION['u_id'] != $this_post_uid) {
             return;
         }
         echo '<div class="h-btn-set">';
-        echo '<div class="btn secondary" id="close-post"><p>Close Post</p></div>';
+        if ($p_is_closed === 0) {
+            echo '<div class="btn secondary to-close" id="close-post"><p>Close Post</p></div>';
+        } else {
+            echo '<div class="btn secondary" id="close-post"><p>Re-Open Post</p></div>';
+        }
+
         echo '<div class="btn danger" id="delete-post"><p>Delete Post</p></div>';
         echo '</div>';
     }
 
-    renderDeletePostBtn($this_post_uid);
+    renderDeletePostBtn($this_post_uid, $p_is_closed);
     ?>
 
 </body>
@@ -316,6 +321,46 @@
 
                 xhr.send('r_id=' + thisReplyId);
             });
+        });
+    })();
+</script>
+
+<!-- Close Question -->
+<script>
+    (function () {
+        let closePostBtn = document.querySelector('#close-post');
+        if (!closePostBtn) {
+            return;
+        }
+
+        closePostBtn.addEventListener('click', (e) => {
+            let url = './php/process-toggle-post.php';
+            let xhr = new XMLHttpRequest();
+
+            // p_is_closed=0 -> Open
+            let closeOrOpen = closePostBtn.classList.contains('to-close') ? 1 : 0;
+
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            if (!window.confirm('Are you sure you want to close this post? Your action can be restored.')) {
+                return;
+            }
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    window.alert('Post had been closed successfully.');
+                    window.location.reload();
+                } else {
+                    console.alert('Network error');
+                }
+            }
+
+            let urlParams = new URLSearchParams(window.location.search);
+            let thisPostId = urlParams.get('post_id');
+
+            xhr.send("p_id=" + thisPostId + "&p_is_close=" + closeOrOpen);
+
         });
     })();
 </script>
