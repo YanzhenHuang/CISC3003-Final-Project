@@ -201,16 +201,17 @@
         </div>
     </div>
 
-
-
-    <!-- Delete Post -->
+    <!-- Close & Delete Post Button -->
     <?php
     function renderDeletePostBtn($this_post_uid)
     {
         if ($_SESSION['u_id'] != $this_post_uid) {
             return;
         }
-        echo '<div class="btn danger" id="delete-post">Delete Post</div>';
+        echo '<div class="h-btn-set">';
+        echo '<div class="btn secondary" id="close-post"><p>Close Post</p></div>';
+        echo '<div class="btn danger" id="delete-post"><p>Delete Post</p></div>';
+        echo '</div>';
     }
 
     renderDeletePostBtn($this_post_uid);
@@ -220,108 +221,108 @@
 
 <!-- List Resize Detector -->
 <script>
-let replyList = document.querySelector('.reply-list');
-let observer = new MutationObserver(adjustReplyListStyle);
+    let replyList = document.querySelector('.reply-list');
+    let observer = new MutationObserver(adjustReplyListStyle);
 
-// Auto set overflow y property of reply list.
-function adjustReplyListStyle() {
-    if (replyList.clientHeight > 650) {
-        replyList.style.overflowY = "scroll";
-    } else {
-        replyList.style.overflowY = "visible";
+    // Auto set overflow y property of reply list.
+    function adjustReplyListStyle() {
+        if (replyList.clientHeight > 650) {
+            replyList.style.overflowY = "scroll";
+        } else {
+            replyList.style.overflowY = "visible";
+        }
     }
-}
 
-adjustReplyListStyle();
+    adjustReplyListStyle();
 </script>
 
 <!-- Delete Post -->
 <script>
-(function() {
-    // Delete Post
-    let delPostBtn = document.querySelector('#delete-post');
-    if (!delPostBtn) {
-        return;
-    }
-
-    delPostBtn.addEventListener('click', (e) => {
-        let url = './php/process-delete-post.php';
-        let xhr = new XMLHttpRequest();
-
-        xhr.open('POST', url, true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-        // Confirm is user want to delete.
-        if (!window.confirm('Delete this post?')) {
+    (function () {
+        // Delete Post
+        let delPostBtn = document.querySelector('#delete-post');
+        if (!delPostBtn) {
             return;
         }
 
-        // Delete result
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                window.alert('Post had been deleted Successfully.');
-                window.location.href = "./all-posts.php";
-            } else {
-                // window.alert('Network error, delete failed. Status: ' + xhr.status);
-                console.alert('Network error');
-            }
-        }
-
-        let urlParams = new URLSearchParams(window.location.search);
-        let thisPostId = urlParams.get('post_id');
-
-        xhr.send("p_id=" + thisPostId);
-        console.log(thisPostId);
-
-    })
-})();
-</script>
-
-<!-- Delete Reply -->
-<script>
-(function() {
-    // Delete reply buttonss
-    let delReplyButtons = document.querySelectorAll('.delete-reply-btn');
-    if (!delReplyButtons) {
-        console.log("Can't find any delete reply buttons.");
-        return;
-    }
-
-    delReplyButtons.forEach((button) => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            let thisReplyId = e.target.getAttribute('reply-id');
-            let url = './php/process-delete-reply.php';
-
+        delPostBtn.addEventListener('click', (e) => {
+            let url = './php/process-delete-post.php';
             let xhr = new XMLHttpRequest();
+
             xhr.open('POST', url, true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-            // User confirm delete reply
-            if (!window.confirm('Delete this reply?')) {
+            // Confirm is user want to delete.
+            if (!window.confirm('Delete this post?')) {
                 return;
             }
 
             // Delete result
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    window.alert('Reply had been deleted Successfully.');
-                    window.location.reload();
+                    window.alert('Post had been deleted Successfully.');
+                    window.location.href = "./all-posts.php";
                 } else {
-                    console.log('Network error, xhr state=' + xhr.readyState + ', xhr status=' +
-                        xhr.status);
+                    // window.alert('Network error, delete failed. Status: ' + xhr.status);
+                    console.alert('Network error');
                 }
             }
 
-            xhr.send('r_id=' + thisReplyId);
+            let urlParams = new URLSearchParams(window.location.search);
+            let thisPostId = urlParams.get('post_id');
+
+            xhr.send("p_id=" + thisPostId);
+            console.log(thisPostId);
+
+        })
+    })();
+</script>
+
+<!-- Delete Reply -->
+<script>
+    (function () {
+        // Delete reply buttonss
+        let delReplyButtons = document.querySelectorAll('.delete-reply-btn');
+        if (!delReplyButtons) {
+            console.log("Can't find any delete reply buttons.");
+            return;
+        }
+
+        delReplyButtons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                let thisReplyId = e.target.getAttribute('reply-id');
+                let url = './php/process-delete-reply.php';
+
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                // User confirm delete reply
+                if (!window.confirm('Delete this reply?')) {
+                    return;
+                }
+
+                // Delete result
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        window.alert('Reply had been deleted Successfully.');
+                        window.location.reload();
+                    } else {
+                        console.log('Network error, xhr state=' + xhr.readyState + ', xhr status=' +
+                            xhr.status);
+                    }
+                }
+
+                xhr.send('r_id=' + thisReplyId);
+            });
         });
-    });
-})();
+    })();
 </script>
 
 <!-- Empty Form Handler -->
 <script>
-handleEmptyForm('#reply-question');
+    handleEmptyForm('#reply-question');
 </script>
 
 

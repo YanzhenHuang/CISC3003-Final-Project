@@ -91,7 +91,15 @@
     max-width: 10rem;
 }
 
-#delete-post {
+.btn p {
+    margin: 0;
+}
+
+#delete-post,
+#close-post {
     max-width: 10rem;
+    height: 1.5rem;
     margin-top: 3rem;
+    /* line-height: 100%; */
+    align-items: center;
 }

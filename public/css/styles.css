@@ -272,6 +272,13 @@ img {
     box-shadow: var(--red-transparent) 0px 8px 15px;
 }
 
+.h-btn-set {
+    /* Horizontal Button Set*/
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-evenly;
+    max-width: 30rem;
+}
 
 
 
