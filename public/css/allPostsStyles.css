@@ -65,6 +65,19 @@
     user-select: none;
 }
 
+.question-closed {
+    opacity: 0.5;
+}
+
+.question-status-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    user-select: none;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
 .question-card .card-title .user-name {
     font-weight: 600;
     color: var(--theme-color);
