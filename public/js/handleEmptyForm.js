@@ -21,6 +21,7 @@ function isFieldValueValid(fieldVal, fieldTag) {
  */
 function handleEmptyForm(submitButtonID) {
     let nonEmptyFields = document.querySelectorAll(".non-empty");
+    console.log(nonEmptyFields);
 
     // Clear error styles of all inputs.
     function clearAllFieldError() {
@@ -32,19 +33,25 @@ function handleEmptyForm(submitButtonID) {
     // Register event: User click submit, check if there is any empty fields.
     document.querySelector(submitButtonID).addEventListener('click', (e) => {
         nonEmptyFields.forEach((field) => {
-            let curFieldVal = field.value;
-            let isCurFieldEmail = field.classList.contains('email');
-            let isCurFieldUserName = field.classList.contains('user-name');
-
-            if (
-                curFieldVal == '' ||
-                (isCurFieldEmail && !isFieldValueValid(curFieldVal, 'email')) ||
-                (isCurFieldUserName && !isFieldValueValid(curFieldVal, 'user-name'))
-            ) {
+            if (field.type === "checkbox" && !field.checked) {
+              e.preventDefault();
+              field.classList.add("error");
+              window.alert("You need to agree to our Terms & Conditions.");
+            } else if (field.type === "text") {
+              const curFieldVal = field.value;
+              const isCurFieldEmail = field.classList.contains("email");
+              const isCurFieldUserName = field.classList.contains("user-name");
+          
+              if (
+                curFieldVal === "" ||
+                (isCurFieldEmail && !isFieldValueValid(curFieldVal, "email")) ||
+                (isCurFieldUserName && !isFieldValueValid(curFieldVal, "user-name"))
+              ) {
                 e.preventDefault();
-                field.classList.add('error');
+                field.classList.add("error");
+              }
             }
-        })
+          });
     })
 
     // Register clear all error events.
