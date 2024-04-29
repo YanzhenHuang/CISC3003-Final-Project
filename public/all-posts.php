@@ -109,7 +109,11 @@
 
         // Prepare statement
         $sql_all_posts = '
-    SELECT p_id, u_name, p_content, p_is_close, p_create_time FROM post, qa_user WHERE qa_user.u_id = post.u_id ORDER BY p_create_time DESC;';
+            SELECT p_id, u_name, p_content, p_is_close, p_create_time 
+            FROM post, qa_user 
+            WHERE qa_user.u_id = post.u_id 
+            ORDER BY p_create_time DESC;
+        ';
 
         $stmt_all_posts = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt_all_posts, $sql_all_posts)) {
