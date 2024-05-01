@@ -113,6 +113,11 @@ a {
     color: inherit;
 }
 
+.form-link {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
 .weak-link {
     color: var(--theme-color);
     font-weight: 600;

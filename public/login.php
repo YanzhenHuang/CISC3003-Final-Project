@@ -69,6 +69,11 @@
                     <a class="password-visibility-toggle weak-link">Show</a>
                 </div>
 
+                <!-- Forgot Password -->
+                <div class="form-link">
+                    <a href="./change-password.php" class="weak-link">Forgot Password?</a>
+                </div>
+
                 <!-- Submit Button -->
                 <input type="submit" value="Login" class="btn" id="login"></input>
             </form>
