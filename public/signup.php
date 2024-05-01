@@ -36,13 +36,27 @@
         <!-- Password and Confirm doesn't match -->
         <?php
         session_start();
-        if (isset($_SESSION['error'])) {
-            echo '<p class="error-text-msg"> Password and confirm password doesn\'t match. </p>';
-            unset($_SESSION['error']);
-            session_destroy();
+
+        function renderErrText($msg)
+        {
+            echo '<p class="error-text-msg">' . $msg . ' </p>';
         }
 
+        (function () {
+            if (!isset ($_SESSION['error'])) {
+                return;
+            }
 
+            if ($_SESSION['error'] == "CONFIRM_ERR") {
+                renderErrText("Password and Confirm Password doesn't match.");
+            } else if ($_SESSION['error'] == "DUP_ERR") {
+                renderErrText("User name or email already exists.");
+            }
+
+            unset ($_SESSION['error']);
+            session_destroy();
+
+        })();
         ?>
 
         <!-- User Submit Form-->
@@ -72,8 +86,8 @@
 
             <!-- Accept protocol -->
             <div>
-                <input type="checkbox" class="non-empty" id="u_agree_tc" name="u_agree_tc" value="1"/>
-                    I Accept the user <a href="www.google.com">Terms & Conditions </a>
+                <input type="checkbox" class="non-empty" id="u_agree_tc" name="u_agree_tc" value="1" />
+                I Accept the user <a href="www.google.com">Terms & Conditions </a>
                 </input>
             </div>
 

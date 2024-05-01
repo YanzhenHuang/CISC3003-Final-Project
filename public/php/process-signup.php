@@ -4,6 +4,8 @@ include ('./utils/check-duplicates.php');
 include ('./utils/send-email.php');
 include ('./utils/generate-token.php');
 
+session_start();
+
 // Get User Name and User Password
 $u_name = $_POST['u_name'];
 $u_email = $_POST['u_email'];
@@ -31,6 +33,8 @@ echo ($haveDupUserName || $haveDupUserEmail) == true ? "User name or email alrea
 
 // If user name exists, then abort
 if ($haveDupUserName || $haveDupUserEmail == true) {
+    $_SESSION['error'] = 'DUP_ERR';
+    header('Location: ../signup.php');
     die();
 }
 
@@ -39,8 +43,6 @@ $u_pwd_hash = hash('sha256', $u_pwd);
 
 // User token for email validation
 $tokenSet = generateToken($u_email, $u_name);
-
-// 2.1 Prepare Statement
 $sql_signup = '
     INSERT INTO qa_user (u_name, u_email, u_pwd, u_valid, u_token) VALUES (?, ?, ?, 0, ?);
 ';
@@ -49,13 +51,10 @@ $stmt_signup = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($stmt_signup, $sql_signup)) {
     die('Prepared statement error.');
 }
-
-// 2.2 Bind parameters
 mysqli_stmt_bind_param($stmt_signup, 'ssss', $u_name, $u_email, $u_pwd_hash, $tokenSet->hashed);
-
-// 2.3 execute the query
 mysqli_stmt_execute($stmt_signup);
 
+// Send validation token to user
 sendEmail($u_email, "Sign Up Notice", "Your validation token is:" . $tokenSet->plain);
 
 echo '<br>';
