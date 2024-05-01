@@ -1,5 +1,6 @@
 <?php
 include ('config-db.php');
+include ('./utils/send-email.php');
 
 // Get user ID and password
 $u_name = $_POST['u_name'];
@@ -34,23 +35,7 @@ if (mysqli_stmt_fetch($stmt_login) && $db_u_pwd_hash == $u_pwd_hash) {
     $_SESSION["u_id"] = $db_u_id;
     $_SESSION["u_name"] = $u_name;
 
-    // // Send an email to notify the user
-    // // Set SMTP server and port using ini_set()
-    // ini_set("SMTP", "smtp.163.com");
-    // ini_set("smtp_port", "25");
-    // ini_set("sendmail_from", "huangyanzhen0108@163.com");
-    // ini_set("auth_password", "HCHYGPIQCUGEXCIY");
-
-    // $email_receiver = $db_u_email;
-    // $email_subject = "Recent Login";
-    // $email_message = "You have a recent login!";
-    // $email_headers = 'From: huangyanzhen0108@163.com' . "\r\n";
-
-    // try {
-    //     mail($email_receiver, $email_subject, $email_message, $email_headers);
-    // } catch (Exception $e) {
-    //     echo "<script>console.log('Mail Error " . $e . ".');</script>";
-    // }
+    sendEmail($db_u_email, "Login Notice", "You have a login record.");
 
     header("Location: ../all-posts.php");
 } else {
