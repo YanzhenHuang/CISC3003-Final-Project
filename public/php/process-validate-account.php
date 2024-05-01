@@ -7,6 +7,7 @@ session_start();
 $validate_uid = $_SESSION['u_id'];
 $inputToken = $_POST['input_token'];
 
+// Get hashed token from db
 $conn = initConnection($host, $username, $password, $dbname);
 $sql_db_u_token_hash = '
     SELECT u_token FROM qa_user WHERE u_id = ?;
