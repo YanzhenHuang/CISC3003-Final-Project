@@ -33,7 +33,7 @@
         <h1>Sign Up</h1>
         <p>Ask whatever to whoever!</p>
 
-        <!-- Password and Confirm doesn't match -->
+        <!-- Error Hint Text -->
         <?php
         session_start();
 
