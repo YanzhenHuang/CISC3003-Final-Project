@@ -1,6 +1,6 @@
 <?php
 
-function db_validateUser($conn)
+function db_validateUser($conn, $validate_uid)
 {
     $sql_db_u_valid = 'UPDATE qa_user SET u_valid = 1 WHERE u_id = ?;';
     $stmt_db_u_valid = mysqli_stmt_init($conn);

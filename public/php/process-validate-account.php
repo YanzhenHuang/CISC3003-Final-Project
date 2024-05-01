@@ -35,6 +35,6 @@ mysqli_close($conn);
 
 $conn = initConnection($host, $username, $password, $dbname);
 
-db_validateUser($conn);
+db_validateUser($conn, $validate_uid);
 
 header("Location: ../all-Posts.php");
