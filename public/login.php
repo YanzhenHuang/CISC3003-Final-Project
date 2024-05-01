@@ -25,6 +25,7 @@
     <!-- PHP -->
     <?php
     include ("./php/utils/cookie-session-settings.php");
+    session_start();
     ?>
 
 </head>
@@ -38,12 +39,12 @@
     ?>
 
     <!-- Intro Animation Overlay -->
-    <div class="overlay" id="overlay">
+    <!-- <div class="overlay" id="overlay">
         <h1 class="intro-text" onclick="enterSite()">Campus Q&A</h1>
-    </div>
+    </div> -->
 
     <!-- Hidden before animation -->
-    <div class="hidden-at-start">
+    <div class="">
 
         <!-- Logo with Background -->
         <div class="logo-container">
@@ -54,6 +55,30 @@
         <div class="login-signup-panel content-block">
             <h1>Login</h1>
             <p>Ask whatever to whoever!</p>
+
+            <!-- Error Hint Text -->
+            <?php
+
+
+            function renderErrText($msg)
+            {
+                echo '<p class="error-text-msg">' . $msg . ' </p>';
+            }
+
+            (function () {
+                if (!isset ($_SESSION['error'])) {
+                    return;
+                }
+
+                if ($_SESSION['error'] == "CONFIRM_ERR") {
+                    renderErrText("User name and password don't match.");
+                }
+
+                unset ($_SESSION['error']);
+                session_destroy();
+
+            })();
+            ?>
 
             <!-- User Submit Form -->
             <form action="./php/process-login.php" method="post">
