@@ -70,6 +70,13 @@
                 <a class="password-visibility-toggle weak-link">Show</a>
             </div>
 
+            <!-- Accept protocol -->
+            <div>
+                <input type="checkbox" class="non-empty" id="u_agree_tc" name="u_agree_tc" value="1"/>
+                    I Accept the user <a href="www.google.com">Terms & Conditions </a>
+                </input>
+            </div>
+
             <!-- Submit Button -->
             <input type="submit" value="Sign Up" class="btn" id="signup"></input>
 
