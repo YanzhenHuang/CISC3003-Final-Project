@@ -44,7 +44,7 @@
                 <input type="text" class="non-empty" id="input_token" name="input_token" placeholder="Token">
             </div>
 
-            <input type="submit" value="Validate" class="btn" id="login"></type>
+            <input type="submit" value="Validate" class="btn" id="login"></input>
         </form>
     </div>
 </body>

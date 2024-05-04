@@ -9,9 +9,7 @@ $inputToken = $_POST['input_token'];
 
 // Get hashed token from db
 $conn = initConnection($host, $username, $password, $dbname);
-$sql_db_u_token_hash = '
-    SELECT u_token FROM qa_user WHERE u_id = ?;
-';
+$sql_db_u_token_hash = 'SELECT u_token FROM qa_user WHERE u_id = ?;';
 
 $stmt_db_u_token_hash = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($stmt_db_u_token_hash, $sql_db_u_token_hash)) {
@@ -25,7 +23,6 @@ mysqli_stmt_bind_result($stmt_db_u_token_hash, $db_u_token_hash);
 $inputToken_hash = hash('sha256', $inputToken);
 
 // Validation
-
 // No user token or doesn't match
 if (!mysqli_stmt_fetch($stmt_db_u_token_hash) || $inputToken_hash != $db_u_token_hash) {
     header("Location: ../validate-account.php");
