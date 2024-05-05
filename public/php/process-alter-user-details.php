@@ -4,6 +4,7 @@ include ('./utils/generate-token.php');
 include ('./utils/send-email.php');
 include ('./utils/check-duplicates.php');
 include ('./utils/cookie-session-settings.php');
+include ('./queries/validations.php');
 
 session_start();
 if (!isset($_SESSION['u_id'])) {
@@ -59,7 +60,10 @@ if (isset($_POST['input_token'])) {
     // Update original session
     $_SESSION['u_name'] = $noDupUserName;
 
-    header('Location: ../about-me.php');
+    $conn = initConnection($host, $username, $password, $dbname);
+    db_validateUser($conn, $login_uid, false);
+
+    header('Location: ../login.php');
     die();
 }
 
@@ -86,7 +90,7 @@ $conn = initConnection($host, $username, $password, $dbname);
 
 // Generate a new token.
 $newTokenSet = updateToken($conn, $login_uid, $new_u_email, $new_u_name);
-sendEmail($new_u_email, "Change Email", "Validate your email: " . $newTokenSet->plain);
+sendEmail($origin_u_email, "Change user name or email", "Validate your email: " . $newTokenSet->plain);
 
 // Wait for user to enter the token
 $_SESSION['origin_u_name'] = $origin_u_name;
