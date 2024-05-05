@@ -85,9 +85,9 @@
             </div>
 
             <!-- Accept protocol -->
-            <div>
+            <div class="form-tac">
                 <input type="checkbox" class="non-empty" id="u_agree_tc" name="u_agree_tc" value="1" />
-                I Accept the user <a href="www.google.com">Terms & Conditions </a>
+                I Accept the user <a href="https://www.google.com" class="weak-link">Terms & Conditions </a>
                 </input>
             </div>
 

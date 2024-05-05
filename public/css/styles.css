@@ -245,6 +245,12 @@ img {
     top: 0.774rem;
 }
 
+.form-tac {
+    color: var(--gray-heavy);
+    margin-bottom: 0.8rem;
+    font-size: 12px;
+}
+
 /* Submit Button */
 .btn {
     display: block;
