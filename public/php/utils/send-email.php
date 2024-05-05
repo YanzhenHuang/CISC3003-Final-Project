@@ -14,6 +14,9 @@ require 'phpmailer/src/SMTP.php';
 
 function sendEmail($targetAddr, $subject, $body)
 {
+    if ($targetAddr == null) {
+        return;
+    }
     $mail = new PHPMailer(true);
 
     $mail->isSMTP();
