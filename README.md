@@ -24,6 +24,7 @@ GitHub Repo: https://github.com/YanzhenHuang/CISC3003-Final-Project
 - [qa_user.sql](./tables/qa_user.sql)
 - [post.sql](./tables/post.sql)
 - [reply.sql](./tables/reply.sql)
+
 You need to import them in the following order:
 `qa_user.sql`, `post.sql`, `reply.sql`.
 
