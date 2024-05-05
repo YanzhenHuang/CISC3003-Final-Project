@@ -21,12 +21,10 @@ if ($u_pwd != $u_confirm_pwd) {
     die();
 }
 
-/*
-    --------- 1. Initialize db connection ---------
-*/
+// Initialize Connection
 $conn = initConnection($host, $username, $password, $dbname);
 
-// 1.1 Check for user name duplicates
+// Check for user name duplicates
 $haveDupUserName = checkDuplicates($conn, 'u_name', 'qa_user', $u_name);
 $haveDupUserEmail = checkDuplicates($conn, 'u_email', 'qa_user', $u_email);
 echo ($haveDupUserName || $haveDupUserEmail) == true ? "User name or email already exists." : "User name is available.";
@@ -38,25 +36,25 @@ if ($haveDupUserName || $haveDupUserEmail == true) {
     die();
 }
 
-// 1.3 Hashing password
+// Hash User Password
 $u_pwd_hash = hash('sha256', $u_pwd);
 
-// User token for email validation
+// Generate User token for email validation
 $tokenSet = generateToken($u_email, $u_name);
-$sql_signup = '
-    INSERT INTO qa_user (u_name, u_email, u_pwd, u_valid, u_token) VALUES (?, ?, ?, 0, ?);
-';
+$sql_signup = 'INSERT INTO qa_user (u_name, u_email, u_pwd, u_valid, u_token) VALUES (?, ?, ?, 0, ?);';
 
 $stmt_signup = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($stmt_signup, $sql_signup)) {
     die('Prepared statement error.');
 }
+
 mysqli_stmt_bind_param($stmt_signup, 'ssss', $u_name, $u_email, $u_pwd_hash, $tokenSet->hashed);
 mysqli_stmt_execute($stmt_signup);
 
 // Send validation token to user
 sendEmail($u_email, "Sign Up Notice", "Your validation token is:" . $tokenSet->plain);
 
+// For Debugging
 echo '<br>';
 echo 'Sign Up Successful.';
 

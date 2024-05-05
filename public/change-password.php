@@ -40,8 +40,6 @@
             unset($_SESSION['error']);
             session_destroy();
         }
-
-
         ?>
 
         <!-- User Submit Form-->
@@ -54,7 +52,7 @@
 
             <!-- Password -->
             <div class="label-and-text-input password-field-container">
-                <input type="password" class="non-empty" id="u_new_pwd" name="u_pwd" placeholder="New Password">
+                <input type="password" class="non-empty" id="u_new_pwd" name="u_new_pwd" placeholder="New Password">
                 <a class="password-visibility-toggle weak-link">Show</a>
             </div>
 

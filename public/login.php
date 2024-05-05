@@ -72,6 +72,8 @@
 
                 if ($_SESSION['error'] == "CONFIRM_ERR") {
                     renderErrText("User name and password don't match.");
+                } else if ($_SESSION['error'] == "USR_NONEX") {
+                    renderErrText("User doesn't exist.");
                 }
 
                 unset ($_SESSION['error']);
