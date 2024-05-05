@@ -15,6 +15,10 @@ $login_uid = $_SESSION['u_id'];
 
 // Token is inputted for validation
 if (isset($_POST['input_token'])) {
+    // Identify user name or email is duplicated
+    $isUserNameDup = $_SESSION['new_u_name'] == null;
+    $isUserEmailDup = $_SESSION['new_u_email'] == null;
+
     // Get user token hash
     $conn = initConnection($host, $username, $password, $dbname);
     $inputToken = $_POST['input_token'];
@@ -61,7 +65,10 @@ if (isset($_POST['input_token'])) {
     $_SESSION['u_name'] = $noDupUserName;
 
     $conn = initConnection($host, $username, $password, $dbname);
-    db_validateUser($conn, $login_uid, false);
+    if (!$isUserEmailDup) {
+        // User email is not duplicated, i.e., new, a new email needs to be validated.
+        db_validateUser($conn, $login_uid, false);
+    }
 
     header('Location: ../login.php');
     die();
