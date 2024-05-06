@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2024 at 11:46 AM
+-- Generation Time: May 06, 2024 at 03:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,14 +42,12 @@ CREATE TABLE `qa_user` (
 --
 
 INSERT INTO `qa_user` (`u_id`, `u_name`, `u_email`, `u_pwd`, `u_valid`, `u_change_valid`, `u_token`) VALUES
-(1, 'Admin', 'yanzhenhuangwork@gmail.com', '840b5a59aa391d157163f73efbe4f60d0ce3c97030a432aca159369840220c41', 1, 0, NULL),
+(1, 'Admin', 'yanzhenhuangwork@gmail.com', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 1, 0, '28ff14220062ec93334d34677fed8aa72b980d03292e9f1074c24ee791f444a4'),
 (2, 'Guo Pengze', 'bingponingmeng@gmail.com', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 1, 0, NULL),
-(3, 'Chen Zirui', NULL, '6ca13d52ca70c883e0f0bb101e425a89e8624de51db2d2392593af6a84118090', 1, 0, NULL),
-(4, 'Li Ruoxuan', NULL, '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 0, NULL),
-(5, 'Chen Pengyu', NULL, 'e9cee71ab932fde863338d08be4de9dfe39ea049bdafb342ce659ec5450b69ae', 1, 0, NULL),
-(6, 'Huang Yanzhen', NULL, 'e7a2ec86b0432d464a402627a91d2da3dd6f76570dd8212864f16558f8ce31a3', 1, 0, NULL),
-(45, 'TestLogin', 'huangyanzhen0108@163.com', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 1, 0, '8873f36c6338824be5254e337b3acbaf84b71f2a94a16ff8352693e99e61726b'),
-(46, 'Foster', 'like13656929652@gmail.com', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 1, 0, '0b65b08e1f3d1ac83cd8a0ec4f9f0f8ac0bed63b1b1e778885e06830b3856ff6');
+(4, 'Li Ruoxuan', 'louiselrxuan@gmail.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 1, 0, NULL),
+(46, 'Foster Chen Pengyu', '3297104944@qq.com', 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 1, 0, '5a1b66934e52b940dbdc1a94891540d40f31a2463cc156e055dede45855d13a6'),
+(47, 'Group 04', 'huangyanzhen0108@163.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 0, '5546c6a2c8842f94b055e954c18cfb40f2f4419d9bf0c14afb863e5a11ed9e89'),
+(48, 'Chen Zirui', '614550317@qq.com', '9a639003b35ec01545e23fc3ea7cbb083ae1762896f8371df00aa4b956679fc9', 1, 0, 'bc4b3b167d24e4bc134b5a31d4953c9c5ae29c27e54ee4fef018e957ff21e1ec');
 
 --
 -- Indexes for dumped tables
@@ -69,7 +67,7 @@ ALTER TABLE `qa_user`
 -- AUTO_INCREMENT for table `qa_user`
 --
 ALTER TABLE `qa_user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'User ID', AUTO_INCREMENT=47;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'User ID', AUTO_INCREMENT=50;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
