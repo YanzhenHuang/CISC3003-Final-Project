@@ -31,7 +31,7 @@ You need to import them in the following order:
 5. **Mail Configuration:** The PHPMailer module uses SMTP to send emails, and the SMTP service is provided by Gmail for our project with the unique token. The configuration file is in [send-email.php](./public/php/utils/send-email.php).
 
 ## Run Project
-Please kindly head to [login.php](./login.php).
+Please kindly head to [login.php](./public/login.php).
 
 ## Sample Accounts and Passwords
 User Name: password
