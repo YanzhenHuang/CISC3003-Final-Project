@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2024 at 03:12 PM
+-- Generation Time: May 06, 2024 at 03:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,12 +50,19 @@ INSERT INTO `reply` (`r_id`, `p_id`, `u_id`, `r_content`, `r_create_time`) VALUE
 (28, 21, 2, 'test', '2024-04-25 16:16:09'),
 (33, 25, 2, 'Test', '2024-04-26 06:35:35'),
 (36, 25, 2, 'Test', '2024-04-26 06:35:52'),
-(37, 4, 2, 'Reply', '2024-04-26 06:36:43'),
 (38, 21, 2, 'Test', '2024-04-26 06:43:25'),
 (39, 21, 2, 'Test', '2024-04-26 06:43:28'),
 (40, 21, 2, 'Test', '2024-04-26 06:43:31'),
 (42, 13, 2, 'test', '2024-04-27 18:53:53'),
-(43, 38, 1, 'This is a reply.', '2024-04-28 12:52:39');
+(58, 48, 46, '123', '2024-05-05 14:04:39'),
+(60, 48, 46, 'not', '2024-05-05 14:04:50'),
+(61, 51, 2, 'I am a little bit worried.', '2024-05-06 01:05:33'),
+(62, 51, 4, 'I remember once is enough for students who graduate in 2025. I\'m graduating in 2024 so it is twice for me.', '2024-05-06 01:06:41'),
+(63, 51, 46, 'You only need to do it once ;) Don\'t worry!', '2024-05-06 01:07:28'),
+(64, 52, 46, 'Too tired to walk...', '2024-05-06 01:08:33'),
+(65, 6, 1, '', '2024-05-06 01:11:37'),
+(66, 6, 1, '', '2024-05-06 01:11:42'),
+(67, 51, 1, 'Once is enough', '2024-05-06 01:20:21');
 
 --
 -- Indexes for dumped tables
@@ -77,7 +84,7 @@ ALTER TABLE `reply`
 -- AUTO_INCREMENT for table `reply`
 --
 ALTER TABLE `reply`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Reply ID', AUTO_INCREMENT=44;
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Reply ID', AUTO_INCREMENT=69;
 
 --
 -- Constraints for dumped tables
