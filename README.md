@@ -28,7 +28,7 @@ GitHub Repo: https://github.com/YanzhenHuang/CISC3003-Final-Project
 You need to import them in the following order:
 `qa_user.sql`, `post.sql`, `reply.sql`.
 
-5. **Mail Configuration:** The PHPMailer module uses SMTP to send emails, and the SMTP service is provided by Gmail for our project with the unique token. The configuration file is in [send-email.php](./public/php/utils/send-email.php).
+5. **Mail Configuration:** The PHPMailer module uses SMTP to send emails, and the SMTP service is provided by Gmail for our project with the unique token. For security reasons, the token provided in the code is **CLOSED** and thus can not be used to validate your authentication. **To make this project work properly, you are obliged to provide your own email token.** The configuration file is in [send-email.php](./public/php/utils/send-email.php) and you're welcomed to change it to the one of your own.
 
 ## Run Project
 Please kindly head to [login.php](./public/login.php).
